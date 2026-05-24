@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMFSL BOEG V1</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <nav class="nav-links">
+                <!-- BOEG Assessment -->
+                <div class="dropdown">
+                    <button class="nav-link-btn">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <path d="M11 8v6"></path>
+                            <path d="M8 11h6"></path>
+                        </svg>
+                        BOEG Assessment
+                        <svg class="chevron-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Administration with vertical dropdown -->
+                <div class="dropdown" id="admin-dropdown">
+                    <button class="nav-link-btn" id="admin-nav-btn">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <polyline points="17 11 19 13 23 9"></polyline>
+                        </svg>
+                        Administration
+                        <svg class="chevron-sm" id="admin-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <!-- Vertical dropdown panel -->
+                    <div class="admin-dropdown-panel" id="admin-dropdown-panel">
+                        <!-- Touchpoints section -->
+                        <div class="admin-section-label">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                <path d="M4.93 4.93a10 10 0 0 0 0 14.14"></path>
+                            </svg>
+                            Touchpoints
+                        </div>
+                        <a href="#" id="nav-create-entity" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="12" y1="18" x2="12" y2="12"></line>
+                                <line x1="9" y1="15" x2="15" y2="15"></line>
+                            </svg>
+                            Create Master Assessment Entity Type
+                        </a>
+                        <a href="#" id="nav-list-entity" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                                <line x1="8" y1="16" x2="16" y2="16"></line>
+                                <line x1="8" y1="8" x2="16" y2="8"></line>
+                            </svg>
+                            List Master Assessment Entity Type
+                        </a>
+                        <a href="#" id="nav-entity-mapping" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="8.5" cy="7" r="4"></circle>
+                                <polyline points="17 11 19 13 23 9"></polyline>
+                            </svg>
+                            Entity User Mapping
+                        </a>
+                        <a href="#" id="nav-entity-upload" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Entity User Mapping Upload
+                        </a>
+
+                        <div class="admin-section-label">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="8.5" cy="7" r="4"></circle>
+                                <path d="M17 11h4"></path>
+                                <path d="M19 9v4"></path>
+                            </svg>
+                            User Management
+                        </div>
+                        <a href="#" id="nav-upload-users" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Upload User Page
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Reports & Dashboards -->
+                <div class="dropdown">
+                    <button class="nav-link-btn">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Reports &amp; Dashboards
+                        <svg class="chevron-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <span class="login-time">Last Login : 28-04-2026 13:01:19</span>
+                <div class="user-profile">
+                    <button class="profile-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container" id="main-dashboard">
+
+        <!-- =====================================================
+             PAGE 0: Demo Landing Page
+             ===================================================== -->
+        <div id="demo-landing-page" class="demo-landing-wrapper" style="display:none;">
+            <!-- Left: Module Tickets -->
+            <div class="demo-modules-panel">
+                <div class="demo-panel-header">
+                    <div class="demo-logo-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="demo-panel-title">Finarya Portal</h2>
+                        <p class="demo-panel-sub">Select a module to continue</p>
+                    </div>
+                </div>
+
+                <!-- Module: BOEG -->
+                <div class="module-ticket" data-module="boeg">
+                    <div class="module-ticket-icon boeg-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <div class="module-ticket-body">
+                        <div class="module-ticket-name">Branch Operations Excellence and Governance Module (BOEG)</div>
+                        <div class="module-ticket-desc">Assessment, Scoring, and Performance Benchmarking</div>
+                        <div class="module-ticket-tags">
+                            <span class="mod-tag">Operations</span>
+                            <span class="mod-tag">Assessment</span>
+                        </div>
+                    </div>
+                    <button class="module-login-btn" data-module="boeg" data-role="Assessor">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Login
+                    </button>
+                </div>
+
+                <!-- Module: SQ -->
+                <div class="module-ticket" data-module="sq">
+                    <div class="module-ticket-icon sq-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="module-ticket-body">
+                        <div class="module-ticket-name">Service Quality Module (SQ)</div>
+                        <div class="module-ticket-desc">Customer Satisfaction & Internal Service Standards</div>
+                        <div class="module-ticket-tags">
+                            <span class="mod-tag">Quality</span>
+                            <span class="mod-tag">Customer</span>
+                        </div>
+                    </div>
+                    <button class="module-login-btn" data-module="sq" data-role="Quality Head">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Login
+                    </button>
+                </div>
+
+                <!-- Module: LENS -->
+                <div class="module-ticket" data-module="lens">
+                    <div class="module-ticket-icon lens-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <div class="module-ticket-body">
+                        <div class="module-ticket-name">LENS (Law Enforcement and Notice System)</div>
+                        <div class="module-ticket-desc">Legal Notice Management & Compliance Tracking</div>
+                        <div class="module-ticket-tags">
+                            <span class="mod-tag">Legal</span>
+                            <span class="mod-tag">Compliance</span>
+                        </div>
+                    </div>
+                    <button class="module-login-btn" data-module="lens" data-role="Legal Admin">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Login
+                    </button>
+                </div>
+
+                <!-- Module: Control 360 -->
+                <div class="module-ticket" data-module="control">
+                    <div class="module-ticket-icon control-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                    </div>
+                    <div class="module-ticket-body">
+                        <div class="module-ticket-name">Control 360</div>
+                        <div class="module-ticket-desc">Comprehensive Internal Control & Risk Management</div>
+                        <div class="module-ticket-tags">
+                            <span class="mod-tag">Risk</span>
+                            <span class="mod-tag">Control</span>
+                        </div>
+                    </div>
+                    <button class="module-login-btn" data-module="control" data-role="Risk Officer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Login
+                    </button>
+                </div>
+
+                <!-- Module: UIGF -->
+                <div class="module-ticket" data-module="uigf">
+                    <div class="module-ticket-icon uigf-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 14l6-6 6 6M4 6h16M4 18h16"></path>
+                        </svg>
+                    </div>
+                    <div class="module-ticket-body">
+                        <div class="module-ticket-name">Unified Integration Governance Framework (UIGF)</div>
+                        <div class="module-ticket-desc">Cross-Platform Data Integration & Data Governance</div>
+                        <div class="module-ticket-tags">
+                            <span class="mod-tag">Intergration</span>
+                            <span class="mod-tag">Data</span>
+                        </div>
+                    </div>
+                    <button class="module-login-btn" data-module="uigf" data-role="Data Architect">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Login
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: User Ticket -->
+            <div class="demo-user-panel">
+                <div class="demo-user-ticket" id="demo-user-ticket">
+                    <!-- Cover / gradient band -->
+                    <div class="dut-cover"></div>
+                    <!-- Avatar -->
+                    <div class="dut-avatar-ring">
+                        <div class="dut-avatar" id="dut-avatar">D</div>
+                    </div>
+                    <!-- Info -->
+                    <div class="dut-info">
+                        <div class="dut-name" id="dut-name">Demo User</div>
+                        <div class="dut-empid" id="dut-empid">SAP ID: —</div>
+                        <div class="dut-email" id="dut-email">demo@demomahindrafinance.com</div>
+                    </div>
+                    <!-- Dashed separator -->
+                    <div class="dut-separator">
+                        <div class="dut-notch dut-notch-left"></div>
+                        <div class="dut-notch dut-notch-right"></div>
+                    </div>
+                    <!-- Status rows -->
+                    <div class="dut-status-body">
+                        <div class="dut-row">
+                            <span class="dut-label">Module</span>
+                            <span class="dut-value" id="dut-module">— Not Selected —</span>
+                        </div>
+                        <div class="dut-row">
+                            <span class="dut-label">Role</span>
+                            <span class="dut-value" id="dut-role">— Not Assigned —</span>
+                        </div>
+                        <div class="dut-row">
+                            <span class="dut-label">Status</span>
+                            <span class="dut-badge dut-badge-pending" id="dut-status">Pending Login</span>
+                        </div>
+                        <div class="dut-row">
+                            <span class="dut-label">Last Login</span>
+                            <span class="dut-value" id="dut-lastlogin">—</span>
+                        </div>
+                    </div>
+                    <!-- Barcode strip -->
+                    <div class="dut-barcode">
+
+                        <div class="dut-barcode-text" id="dut-barcode-text">MMFSL-DEMO-0000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 1: Entity-User Mapping — Selection Overlay
+             ===================================================== -->
+
+
+        <!-- =====================================================
+             PAGE 2: Entity-User Mapping — Main Board
+             ===================================================== -->
+        <div class="main-page-box" id="main-page-box" style="display:none;">
+            <div class="mapping-header">
+                <div class="mapping-title">
+                    <h1>Entity-User Mapping</h1>
+                </div>
+                <div class="global-actions">
+                    <div class="header-select-wrap">
+                        <label class="header-select-label">Entity Type</label>
+                        <div class="header-custom-select" id="header-custom-select">
+                            <div class="header-select-trigger" id="header-select-trigger">
+                                <span id="header-select-value">Select Entity</span>
+                                <svg class="chevron-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                            <div class="header-select-options" id="header-select-options">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-mode-toggle">
+                        <span class="toggle-label">Mode:</span>
+                        <div class="toggle-group">
+                            <button class="toggle-btn active" data-mode="view" title="View Mode">
+                                <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="toggle-btn" data-mode="edit" title="Edit Mode">
+                                <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="action-btn export-btn">
+                        <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Export
+                    </button>
+                    <button class="action-btn save-btn">
+                        <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Save
+                    </button>
+                    <div class="global-user-search">
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="global-user-search-input" placeholder="Search Users...">
+                            <div class="search-results" id="global-user-search-results"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mapping-container">
+                <svg id="mapping-svg" class="mapping-canvas"></svg>
+                <div class="delete-btn-container" id="delete-btn-container"></div>
+
+                <!-- Column 1: Regions -->
+                <div class="mapping-column" data-type="region">
+                    <div class="column-header region-theme">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Regions</span>
+                        <div class="column-header-actions">
+                            <button class="user-mapping-btn" title="User Access Mapping" data-column="region">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                    <polyline points="17 11 19 13 23 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="column-search">
+                        <div class="search-wrapper">
+                            <input type="text" placeholder="Search Regions..." class="column-search-input">
+                        </div>
+                    </div>
+                    <div class="column-list" id="regions-list"></div>
+                </div>
+
+                <!-- Column 2: States -->
+                <div class="mapping-column" data-type="state">
+                    <div class="column-header state-theme">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 21 s-9-6-9-13a9 9 0 0 1 18 0c0 7-9 13-9 13z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>States</span>
+                        <div class="column-header-actions">
+                            <button class="user-mapping-btn" title="User Access Mapping" data-column="state">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                    <polyline points="17 11 19 13 23 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="direction-toggle">
+                            <button class="dir-btn active" data-dir="both" title="Show All"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 11V7l-5 5 5 5v-4h10v4l5-5-5-5v4z"></path>
+                                </svg></button>
+                            <button class="dir-btn" data-dir="backward" title="To Regions"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                                </svg></button>
+                            <button class="dir-btn" data-dir="forward" title="To Circles"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+                    <div class="column-search">
+                        <div class="search-wrapper">
+                            <input type="text" placeholder="Search States..." class="column-search-input">
+                        </div>
+                    </div>
+                    <div class="column-list" id="states-list"></div>
+                </div>
+
+                <!-- Column 3: Circles -->
+                <div class="mapping-column" data-type="circle">
+                    <div class="column-header circle-theme">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                        <span>Circles</span>
+                        <div class="column-header-actions">
+                            <button class="user-mapping-btn" title="User Access Mapping" data-column="circle">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                    <polyline points="17 11 19 13 23 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="direction-toggle">
+                            <button class="dir-btn active" data-dir="both" title="Show All"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 11V7l-5 5 5 5v-4h10v4l5-5-5-5v4z"></path>
+                                </svg></button>
+                            <button class="dir-btn" data-dir="backward" title="To States"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                                </svg></button>
+                            <button class="dir-btn" data-dir="forward" title="To Clusters"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+                    <div class="column-search">
+                        <div class="search-wrapper">
+                            <input type="text" placeholder="Search Circles..." class="column-search-input">
+                        </div>
+                    </div>
+                    <div class="column-list" id="circles-list"></div>
+                </div>
+
+                <!-- Column 4: Clusters -->
+                <div class="mapping-column" data-type="cluster">
+                    <div class="column-header cluster-theme">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Clusters</span>
+                        <div class="column-header-actions">
+                            <button class="user-mapping-btn" title="User Access Mapping" data-column="cluster">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                    <polyline points="17 11 19 13 23 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="direction-toggle">
+                            <button class="dir-btn active" data-dir="both" title="Show All"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 11V7l-5 5 5 5v-4h10v4l5-5-5-5v4z"></path>
+                                </svg></button>
+                            <button class="dir-btn" data-dir="backward" title="To Circles"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                                </svg></button>
+                            <button class="dir-btn" data-dir="forward" title="To Branches"><svg class="icon-xs"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+                    <div class="column-search">
+                        <div class="search-wrapper">
+                            <input type="text" placeholder="Search Clusters..." class="column-search-input">
+                        </div>
+                    </div>
+                    <div class="column-list" id="clusters-list"></div>
+                </div>
+
+                <!-- Column 5: Branches -->
+                <div class="mapping-column" data-type="branch">
+                    <div class="column-header branch-theme">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21v-4a4 4 0 1 1 4 4H3z"></path>
+                            <path d="M3 7V3a4 4 0 1 1 4 4H3z"></path>
+                            <path d="M17 21v-4a4 4 0 1 1 4 4h-4z"></path>
+                            <path d="M17 7V3a4 4 0 1 1 4 4h-4z"></path>
+                        </svg>
+                        <span>Branches</span>
+                        <div class="column-header-actions">
+                            <button class="user-mapping-btn" title="User Access Mapping" data-column="branch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                    <polyline points="17 11 19 13 23 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="column-search">
+                        <div class="search-wrapper">
+                            <input type="text" placeholder="Search Branches..." class="column-search-input">
+                        </div>
+                    </div>
+                    <div class="column-list" id="branches-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 3: Create Master Assessment Entity Type
+             ===================================================== -->
+        <div class="main-page-box" id="create-entity-page" style="display:none; overflow-y: auto;">
+            <div class="cet-page-wrapper">
+
+                <!-- Header bar -->
+                <div class="cet-section-header" style="background:#e41837;">
+                    <h1>Create Master Assessment Entity Type</h1>
+                </div>
+
+                <!-- Stepper -->
+                <div class="cet-stepper-container"
+                    style="display:flex; justify-content:space-between; align-items:center; padding: 24px 40px; background:white; border-bottom:1px solid #eee; border-radius: 12px 12px 0 0; margin-bottom: 0;">
+                    <div class="cet-tab active" data-tab="1"
+                        style="flex:1; display:flex; align-items:center; justify-content:center; gap:12px;">
+                        <div class="cet-tab-num"
+                            style="width:32px; height:32px; background:#9ca3af; color:white; font-weight:700;">1</div>
+                        <div style="text-align:left;">
+                            <div style="font-size:14px; font-weight:700; color:#374151;">Define Hierarchy</div>
+                            <div style="font-size:11px; color:#6b7280;">Set number of levels and names</div>
+                        </div>
+                    </div>
+                    <div style="width: 40px; display:flex; align-items:center; justify-content:center; opacity:0.3;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <div class="cet-tab disabled" data-tab="2"
+                        style="flex:1; display:flex; align-items:center; justify-content:center; gap:12px; opacity:0.5;">
+                        <div class="cet-tab-num"
+                            style="width:32px; height:32px; background:#9ca3af; color:white; font-weight:700;">2</div>
+                        <div style="text-align:left;">
+                            <div style="font-size:14px; font-weight:700; color:#374151;">Entity Attributes</div>
+                            <div style="font-size:11px; color:#6b7280;">Define attributes for each level</div>
+                        </div>
+                    </div>
+                    <div class="cet-tab disabled" data-tab="3"
+                        style="flex:1; display:flex; align-items:center; justify-content:center; gap:12px; opacity:0.5;">
+                        <div class="cet-tab-num"
+                            style="width:32px; height:32px; background:#9ca3af; color:white; font-weight:700;">3</div>
+                        <div style="text-align:left;">
+                            <div style="font-size:14px; font-weight:700; color:#374151;">Excel Upload</div>
+                            <div style="font-size:11px; color:#6b7280;">Upload & Map Entities</div>
+                        </div>
+                    </div>
+                    <div style="width: 40px; display:flex; align-items:center; justify-content:center; opacity:0.3;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <div class="cet-tab disabled" data-tab="4"
+                        style="flex:1; display:flex; align-items:center; justify-content:center; gap:12px; opacity:0.5;">
+                        <div class="cet-tab-num"
+                            style="width:32px; height:32px; background:#9ca3af; color:white; font-weight:700;">4</div>
+                        <div style="text-align:left;">
+                            <div style="font-size:14px; font-weight:700; color:#374151;">Review & Confirm</div>
+                            <div style="font-size:11px; color:#6b7280;">Review and save your changes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cet-tab-content">
+                    <!-- Step 1: Configuration -->
+                    <div class="cet-tab-pane active" id="pane-tab-1">
+                        <div class="cet-config-container">
+                            <!-- Left: Define Levels -->
+                            <div class="cet-config-left">
+                                <h3 class="config-section-title">Step 1: Define Hierarchy Levels</h3>
+                                <p class="config-section-subtitle">Choose how many levels you want and name them</p>
+
+                                <!-- Entity Name -->
+                                <div style="margin-bottom: 24px;">
+                                    <label
+                                        style="display:block; font-size:13px; font-weight:700; margin-bottom:10px;">Entity
+                                        Name</label>
+                                    <input type="text" id="entity-type-name" class="cet-input"
+                                        placeholder="e.g. Retail Branch" style="width:100%;">
+                                </div>
+
+                                <div style="margin-bottom: 24px;">
+                                    <label
+                                        style="display:block; font-size:13px; font-weight:700; margin-bottom:10px;">Select
+                                        Hierarchy Level Count</label>
+                                    <div class="hierarchy-stepper-control"
+                                        style="display:flex; align-items:center; gap:16px; background:#f8f9fa; border:1px solid #e5e7eb; padding:12px; border-radius:12px; width:fit-content;">
+                                        <button class="stepper-btn" id="geo-level-minus"
+                                            style="width:36px; height:36px; border-radius:50%; border:1px solid #e5e7eb; background:white; color:#e41837; font-size:20px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">&minus;</button>
+                                        <div style="text-align:center; min-width:80px;">
+                                            <div id="geo-level-display"
+                                                style="font-size:20px; font-weight:800; color:#111;">3</div>
+                                            <div
+                                                style="font-size:11px; color:#6b7280; font-weight:600; text-transform:uppercase;">
+                                                Levels</div>
+                                        </div>
+                                        <button class="stepper-btn" id="geo-level-plus"
+                                            style="width:36px; height:36px; border-radius:50%; border:1px solid #e5e7eb; background:white; color:#e41837; font-size:20px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">&plus;</button>
+                                    </div>
+                                    <input type="hidden" id="geo-level-count" value="3">
+                                </div>
+
+                                <div style="margin-bottom: 10px;">
+                                    <label
+                                        style="display:block; font-size:13px; font-weight:700; margin-bottom:10px;">Define
+                                        Level Names</label>
+                                    <div id="geo-levels-container">
+                                        <!-- Will be populated by JS -->
+                                    </div>
+                                </div>
+
+                                <div class="config-info-box">
+
+                                </div>
+                            </div>
+
+                            <!-- Right: Live Preview -->
+                            <div class="cet-config-right">
+                                <h3 class="config-section-title">Live Hierarchy Preview</h3>
+                                <p class="config-section-subtitle">This is how your hierarchy will look</p>
+
+                                <div class="preview-card-list" id="live-hierarchy-preview">
+                                    <!-- Will be populated by JS -->
+                                </div>
+
+                                <div class="preview-legend">
+                                    <div class="legend-item">
+                                        <span
+                                            style="border-bottom:1px dashed #6b7280; width:20px; display:inline-block; margin-bottom:3px;"></span>
+                                        Indicates parent &rarr; child relationship
+                                    </div>
+                                    <div class="legend-item">
+                                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#6b7280"
+                                            stroke-width="2">
+                                            <rect x="4" y="4" width="16" height="16" rx="2" />
+                                            <path d="M9 9h6M9 13h6M9 17h6" />
+                                        </svg>
+                                        Data flows from top to bottom
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cet-action-row"
+                            style="padding: 24px; background: white; border-top: 1px solid #eee; border-radius: 0 0 12px 12px; margin-top: 0;">
+                            <button class="action-btn" id="btn-cancel-entity">Cancel</button>
+                            <button class="cet-create-btn" id="btn-next-tab-1" style="background:#e41837;">Save
+                                Hierarchy & Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Entity Attributes -->
+                    <div class="cet-tab-pane" id="pane-tab-2">
+                        <div class="attribute-setup-container">
+                            <!-- Left: Level Explorer -->
+                            <div class="attribute-setup-left">
+                                <h4 style="margin:0 0 16px 0; font-size:14px; font-weight:700;">Hierarchy Levels</h4>
+                                <div id="attr-mini-funnel">
+                                    <!-- Will be populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Right: Tables -->
+                            <div class="attribute-setup-right" id="attributes-tables-container">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
+
+                        <div class="cet-action-row"
+                            style="padding: 24px; background: white; border-top: 1px solid #eee; margin-top: 24px;">
+                            <button class="action-btn" onclick="moveCetToTab(1)">Back</button>
+                            <button class="cet-create-btn" id="btn-next-tab-2" style="background:#e41837;">Next: Excel
+                                Upload &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Excel Upload (NEW) -->
+                    <div class="cet-tab-pane" id="pane-tab-3">
+                        <div class="excel-upload-container" style="padding: 40px; background: #fff; min-height: 400px;">
+                            <div style="max-width: 800px; margin: 0 auto;">
+                                <div style="text-align: center; margin-bottom: 32px;">
+                                    <h2 style="font-size: 24px; font-weight: 800; color: #111; margin-bottom: 8px;">
+                                        Upload Entity Data</h2>
+                                    <p style="color: #6b7280; font-size: 15px;">Upload an Excel file to bulk create
+                                        entities/branches. This step is optional.</p>
+                                </div>
+
+                                <!-- Upload Area -->
+                                <div id="excel-drop-zone"
+                                    style="border: 2px dashed #e5e7eb; border-radius: 16px; padding: 48px; text-align: center; background: #f9fafb; cursor: pointer; transition: all 0.3s;"
+                                    onmouseover="this.style.borderColor='#e41837'; this.style.background='#fff5f6';"
+                                    onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb';"
+                                    onclick="document.getElementById('excel-file-input').click();">
+                                    <input type="file" id="excel-file-input" style="display: none;"
+                                        accept=".xlsx, .xls, .csv">
+                                    <div
+                                        style="width: 64px; height: 64px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#e41837"
+                                            stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="17 8 12 3 7 8" />
+                                            <line x1="12" y1="3" x2="12" y2="15" />
+                                        </svg>
+                                    </div>
+                                    <h3 style="font-size: 16px; font-weight: 700; color: #111; margin-bottom: 4px;">
+                                        Click to upload or drag and drop</h3>
+                                    <p style="font-size: 13px; color: #6b7280;">Support XLSX, XLS, CSV (Max 10MB)</p>
+                                    <div id="selected-file-name"
+                                        style="margin-top: 16px; font-weight: 600; color: #e41837; display: none;">
+                                    </div>
+                                </div>
+
+                                <!-- Sheet Selection (Hidden by default) -->
+                                <div id="sheet-selection-area" style="margin-top: 32px; display: none;">
+                                    <label
+                                        style="display: block; font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #374151;">Select
+                                        Excel Sheet</label>
+                                    <select id="excel-sheet-select" class="cet-input"
+                                        style="width: 100%; padding: 12px; font-size: 14px;">
+                                        <!-- Populated via JS -->
+                                    </select>
+                                </div>
+
+                                <!-- Header Mapping (Hidden by default) -->
+                                <div id="mapping-selection-area" style="margin-top: 32px; display: none;">
+                                    <h3
+                                        style="font-size: 16px; font-weight: 700; color: #111; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                                        Map Excel Headers to Attributes
+                                        <span
+                                            style="font-size: 11px; font-weight: 500; color: #6b7280; background: #f3f4f6; padding: 2px 8px; border-radius: 12px;">Step
+                                            3 of 3</span>
+                                    </h3>
+                                    <div
+                                        style="background: white; border: 1px solid #eee; border-radius: 12px; overflow: hidden;">
+                                        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                            <thead>
+                                                <tr style="background: #fafafa; border-bottom: 1px solid #eee;">
+                                                    <th
+                                                        style="text-align: left; padding: 12px 16px; font-weight: 700; color: #4b5563;">
+                                                        System Attribute</th>
+                                                    <th
+                                                        style="text-align: left; padding: 12px 16px; font-weight: 700; color: #4b5563;">
+                                                        Excel Header</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="excel-mapping-tbody">
+                                                <!-- Populated via JS -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    Please review the hierarchy struc`ture and attributes. You can go back to make
+                                    changes.
+
+                                    <!-- Graphical Statistics for Create Flow -->
+                                    <div id="create-upload-stats-section"
+                                        style="margin-top: 40px; display: none; padding-top: 32px; border-top: 1px solid #eee;">
+                                        <h3
+                                            style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #111; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e41837"
+                                                stroke-width="2.5">
+                                                <path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z" />
+                                            </svg>
+                                            Uploaded data distribution
+                                        </h3>
+                                        <div id="create-upload-stats-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cet-action-row"
+                            style="padding: 24px; background: white; border-top: 1px solid #eee; margin-top: 24px;">
+                            <button class="action-btn" onclick="moveCetToTab(2)">Back</button>
+                            <div style="display: flex; gap: 12px;">
+                                <button class="action-btn" id="btn-skip-excel" style="color: #6b7280;">Skip this
+                                    Step</button>
+                                <button class="cet-create-btn" id="btn-next-tab-3" style="background:#e41837;">Next:
+                                    Review & Confirm &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Review & Confirm -->
+                    <div class="cet-tab-pane" id="pane-tab-4">
+                        <!-- Left: Hierarchy Visual -->
+                        <div class="summary-left" id="summary-hierarchy-visual">
+                            <!-- Will be populated by JS -->
+                        </div>
+
+                        <!-- Right: Attributes Bullet Summary -->
+                        <div class="summary-right" id="summary-attributes-bullets">
+                            <!-- Will be populated by JS -->
+                        </div>
+
+                        <!-- Success Disclaimer -->
+                        <div class="config-info-box"
+                            style="margin-top:40px; background:#f0f9ff; border-color:#bae6fd; color:#0369a1;">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 8v4" />
+                                <path d="M12 16h.01" />
+                            </svg>
+                            <span>Please review the hierarchy structure and attributes. You can go back to make
+                                changes.</span>
+                        </div>
+
+                        <div class="cet-action-row"
+                            style="padding: 24px; background: white; border-top: 1px solid #eee; margin-top: 24px;">
+                            <button class="action-btn" onclick="moveCetToTab(3)">Back</button>
+                            <button class="cet-create-btn" id="btn-create-entity">Confirm &
+                                Save Hierarchy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 4: List Master Assessment Entity Type
+             ===================================================== -->
+        <div class="main-page-box" id="list-entity-page" style="display:none; overflow-y: auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center;">
+                    <h1>List Master Assessment Entity Types</h1>
+                    <!-- <button class="cet-create-btn" id="btn-add-entity-type-from-list"
+                        style="font-size:13px; padding: 8px 18px; background:white; color:#e41837; font-weight:700; border-radius:6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">+ Create New Type</button> -->
+                </div>
+                <div class="cet-card" style="padding: 0; overflow: hidden;">
+                    <table class="cet-table" id="entity-type-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Sr No</th>
+                                <th style="text-align: center;">Entity Type Name</th>
+                                <th style="text-align: center;">Geography Levels</th>
+                                <th style="text-align: center;">No. of Attributes</th>
+                                <th style="text-align: center;">Created On</th>
+                                <th style="text-align: center;">Actions</th>
+                            </tr>
+                            <tr style="background: #fdfdfe;">
+                                <th style="padding: 8px 12px;"><input type="text" class="cet-table-search-input"
+                                        placeholder="Search..." onkeyup="filterEntityTable(0)"></th>
+                                <th style="padding: 8px 12px;"><input type="text" class="cet-table-search-input"
+                                        placeholder="Search..." onkeyup="filterEntityTable(1)"></th>
+                                <th style="padding: 8px 12px;"><input type="text" class="cet-table-search-input"
+                                        placeholder="Search..." onkeyup="filterEntityTable(2)"></th>
+                                <th style="padding: 8px 12px;"><input type="text" class="cet-table-search-input"
+                                        placeholder="Search..." onkeyup="filterEntityTable(3)"></th>
+                                <th style="padding: 8px 12px;"><input type="text" class="cet-table-search-input"
+                                        placeholder="Search..." onkeyup="filterEntityTable(4)"></th>
+                                <th style="padding: 8px 12px;"><input type="text" class="cet-table-search-input"
+                                        placeholder="Search..." onkeyup="filterEntityTable(5)"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="entity-list-tbody">
+                            <!-- Static example record updated to match dynamic icon style -->
+                            <tr>
+                                <td>1</td>
+                                <td><strong style="color:#111;">Retail Branch</strong></td>
+                                <td>
+                                    <div style="display:flex; flex-wrap:wrap; gap:4px; align-items:center;">
+                                        <span class="geo-tag">Zone</span><span class="geo-arrow">&rarr;</span>
+                                        <span class="geo-tag">Region</span><span class="geo-arrow">&rarr;</span>
+                                        <span class="geo-tag">State</span><span class="geo-arrow">&rarr;</span>
+                                        <span class="geo-tag">Circle</span><span class="geo-arrow">&rarr;</span>
+                                        <span class="geo-tag">Cluster</span>
+                                    </div>
+                                </td>
+                                <td><span style="font-weight:700; color:#4b5563;">7</span> Attributes</td>
+                                <td style="color:#6b7280; font-size:12px;">28/04/2026</td>
+                                <td style="text-align:right; white-space:nowrap;">
+                                    <button class="cet-icon-btn view" onclick="showViewEntity('Retail Branch', 0)"
+                                        title="View Details">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                    </button>
+                                    <button class="cet-icon-btn update" onclick="showUpdateEntity('Retail Branch', 0)"
+                                        title="Update Configuration">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                            <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                        </svg>
+                                    </button>
+                                    <button class="cet-icon-btn delete" onclick="deleteEntityType('Retail Branch', 0)"
+                                        title="Delete Entity Type">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path
+                                                d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 5: Entity User Mapping Upload
+             ===================================================== -->
+        <div class="main-page-box" id="entity-upload-page" style="display:none; overflow-y:auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div>
+                        <h1>Entity User Mapping Upload</h1>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Select an Entity Type, download the role-wise Excel template, add the Sol ID and User IDs, and upload the file.</p>
+                    </div>
+                    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                        <select id="entity-user-upload-entity-select"
+                            style="padding:10px 12px; border-radius:8px; border:1px solid #ffffff; min-width:260px; font-size:14px;">
+                            <option value="">Select Entity Type</option>
+                        </select>
+                        <button class="cet-create-btn" id="entity-download-user-template-btn"
+                            style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" disabled>
+                            Download Excel Template
+                        </button>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px; margin-top:24px;">
+                    <div class="cet-card" style="padding:24px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                            <div>
+                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Upload Entity User Mapping Excel</h2>
+                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">Use the downloaded template and upload one worksheet with the selected Entity Type columns.</p>
+                            </div>
+                            <span style="font-size:12px; font-weight:700; color:#e41837; background:#fff5f6; padding:6px 10px; border-radius:999px;">Sol ID + role-wise User IDs</span>
+                        </div>
+
+                        <div id="entity-upload-drop-zone"
+                            style="border:2px dashed #e5e7eb; border-radius:16px; padding:32px; text-align:center; background:#f9fafb; cursor:pointer; transition:all 0.3s;"
+                            onclick="document.getElementById('entity-upload-file-input').click();">
+                            <input type="file" id="entity-upload-file-input" accept=".xlsx,.xls,.csv"
+                                style="display:none;">
+                            <div
+                                style="width:64px; height:64px; margin:0 auto 20px; border-radius:50%; background:white; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#e41837"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Click to select
+                                or drag and drop a file</h3>
+                            <p style="font-size:13px; color:#6b7280;">Supports XLSX, XLS and CSV files</p>
+                            <div id="entity-upload-file-name"
+                                style="margin-top:18px; color:#e41837; font-weight:700; display:none;"></div>
+                        </div>
+
+                        <div style="margin-top:18px; padding:16px; background:#f8fafc; border-radius:12px; border:1px solid #e5e7eb;">
+                            <div style="font-size:12px; font-weight:700; color:#111; margin-bottom:8px;">Selected role columns</div>
+                            <div id="entity-user-upload-role-summary"
+                                style="display:flex; flex-wrap:wrap; gap:8px; font-size:12px; color:#374151;">
+                                Select an entity type to view the role columns.
+                            </div>
+                        </div>
+
+                        <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                            <button class="cet-create-btn" id="entity-upload-submit-btn" style="background:#e41837;" disabled>Upload Mapping</button>
+                            <!-- <button class="action-btn" id="entity-download-result-btn" style="background:white; border:1px solid #d1d5db; color:#111827;" disabled>Download Result File</button> -->
+                            <span id="entity-upload-status" style="font-size:13px; color:#4b5563;">Select an entity type to begin.</span>
+                        </div>
+                    </div>
+
+                    <div class="cet-card" style="padding:24px;">
+                        <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Upload guidance</h2>
+                        <div style="display:grid; gap:14px; color:#4b5563; font-size:14px; line-height:1.6;">
+                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Select the Entity Type first so the template shows the relevant roles for that hierarchy.
+                            </div>
+                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Each row should have a Sol ID and at least one User ID in the role columns that apply to the selected Entity Type.
+                            </div>
+                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                The upload history and latest result file are saved locally in this browser so you can download them anytime.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="cet-card" style="padding:24px; margin-top:24px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                        <div>
+                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Preview uploaded mapping</h2>
+                            <p style="font-size:13px; color:#6b7280;">Review the parsed Sol ID and role-wise User IDs before finalizing the upload.</p>
+                        </div>
+                        <div id="entity-upload-summary" style="font-size:13px; font-weight:700; color:#e41837;">
+                            No mapping loaded.
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                            <thead>
+                                <tr id="entity-upload-preview-header-row" style="background:#fafafa; color:#374151; text-align:left;">
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Sr No</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Sol ID</th>
+                                </tr>
+                            </thead>
+                            <tbody id="entity-upload-preview-body">
+                                <tr>
+                                    <td colspan="2" style="padding:16px 14px; color:#6b7280;">No data available yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+
+                <div class="cet-card" style="padding:24px; margin-top:24px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                        <div>
+                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Upload history</h2>
+                            <p style="font-size:13px; color:#6b7280;">Tracks each upload with the Entity Type, file name, timestamp and pass/fail totals.</p>
+                        </div>
+                        <div id="entity-upload-log-note" style="font-size:13px; font-weight:700; color:#e41837;">
+                            No upload result file has been generated yet.
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                            <thead>
+                                <tr style="background:#fafafa; color:#374151; text-align:left;">
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">File Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Timestamp</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Total Record Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Passed</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Failed</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="entity-upload-log-body">
+                                <tr>
+                                    <td colspan="6" style="padding:16px 14px; color:#6b7280;">No upload logs yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 5: Upload User Page
+             ===================================================== -->
+        <div class="main-page-box" id="upload-user-page" style="display:none; overflow-y:auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div>
+                        <h1>Upload User Page</h1>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Download the user template, add User Login ID, User Name and User Email ID, and upload the file to create users.</p>
+                    </div>
+                    <button class="cet-create-btn" id="download-user-template-btn"
+                        style="background:white; color:#e41837; border:none; box-shadow:0 4px 12px rgba(0,0,0,0.12);">
+                        Download Excel Template
+                    </button>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px; margin-top:24px;">
+                    <div class="cet-card" style="padding:24px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                            <div>
+                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Upload User Excel</h2>
+                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">The file should contain the required columns and one row per user.</p>
+                            </div>
+                            <span style="font-size:12px; font-weight:700; color:#e41837; background:#fff5f6; padding:6px 10px; border-radius:999px;">User Login ID • User Name • User Email ID</span>
+                        </div>
+
+                        <div id="user-upload-drop-zone"
+                            style="border:2px dashed #e5e7eb; border-radius:16px; padding:32px; text-align:center; background:#f9fafb; cursor:pointer; transition:all 0.3s;"
+                            onclick="document.getElementById('user-upload-file-input').click();">
+                            <input type="file" id="user-upload-file-input" accept=".xlsx,.xls,.csv"
+                                style="display:none;">
+                            <div
+                                style="width:64px; height:64px; margin:0 auto 20px; border-radius:50%; background:white; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#e41837"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Click to select or drag and drop a file</h3>
+                            <p style="font-size:13px; color:#6b7280;">Supports XLSX, XLS and CSV files</p>
+                            <div id="user-upload-file-name"
+                                style="margin-top:18px; color:#e41837; font-weight:700; display:none;"></div>
+                        </div>
+
+                        <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                            <button class="cet-create-btn" id="upload-user-submit-btn" style="background:#e41837;" disabled>Upload Users</button>
+                            <!-- <button class="action-btn" id="download-user-result-btn" style="background:white; border:1px solid #d1d5db; color:#111827;" disabled>Download Result File</button> -->
+                            <span id="user-upload-status" style="font-size:13px; color:#4b5563;">Select a file to begin.</span>
+                        </div>
+                    </div>
+
+                    <div class="cet-card" style="padding:24px;">
+                        <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Upload guidance</h2>
+                        <div style="display:grid; gap:14px; color:#4b5563; font-size:14px; line-height:1.6;">
+                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Download the template and keep the columns exactly as shown: User Login ID, User Name, and User Email ID.
+                            </div>
+                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Each row must contain a valid email address and a unique User Login ID.
+                            </div>
+                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                The latest upload result file and upload history are saved locally in this browser.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="cet-card" style="padding:24px; margin-top:24px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                        <div>
+                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Preview uploaded users</h2>
+                            <p style="font-size:13px; color:#6b7280;">Review the parsed users before finalizing the upload.</p>
+                        </div>
+                        <div id="user-upload-summary" style="font-size:13px; font-weight:700; color:#e41837;">
+                            No users loaded.
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                            <thead>
+                                <tr style="background:#fafafa; color:#374151; text-align:left;">
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Sr No</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">User Login ID</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">User Name</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">User Email ID</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-upload-preview-body">
+                                <tr>
+                                    <td colspan="4" style="padding:16px 14px; color:#6b7280;">No data available yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+
+                <div class="cet-card" style="padding:24px; margin-top:24px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                        <div>
+                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Upload history</h2>
+                            <p style="font-size:13px; color:#6b7280;">Tracks each upload with the file name, timestamp and pass/fail totals.</p>
+                        </div>
+                        <div id="user-upload-log-note" style="font-size:13px; font-weight:700; color:#e41837;">
+                            No upload result file has been generated yet.
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                            <thead>
+                                <tr style="background:#fafafa; color:#374151; text-align:left;">
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">File Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Timestamp</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Total Record Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Passed</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Failed</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-upload-log-body">
+                                <tr>
+                                    <td colspan="6" style="padding:16px 14px; color:#6b7280;">No upload logs yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 5: View Entity Type Details
+             ===================================================== -->
+        <div class="main-page-box" id="view-entity-page" style="display:none; overflow-y: auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center;">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <button class="action-btn" onclick="showMasterAssessmentEntityList()"
+                            style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.2); color:white; border:none; display:flex; align-items:center; justify-content:center; padding:0;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                        </button>
+                        <h1>Entity Type Details: <span id="view-entity-name-header">...</span></h1>
+                    </div>
+                </div>
+
+                <div class="cet-card" style="margin-bottom: 24px; padding: 24px;">
+                    <div class="summary-container" id="view-entity-content">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="cet-action-row"
+                    style="background:white; padding:20px; border-radius:12px; border:1px solid #eee;">
+                    <button class="action-btn" onclick="showMasterAssessmentEntityList()">Close Details</button>
+                    <button class="cet-create-btn" id="view-btn-edit" style="background:#e41837;">Edit this
+                        Configuration</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 6: Update Entity Type
+             ===================================================== -->
+        <div class="main-page-box" id="update-entity-page" style="display:none; overflow-y: auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header" style="background:#e41837;">
+                    <h1>Update Assessment Entity Type</h1>
+                </div>
+                <div class="cet-card" style="padding: 0;">
+                    <div class="cet-stepper-container"
+                        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0; background:white; padding:16px 24px; border-bottom:1px solid #eee; border-radius: 12px 12px 0 0;">
+                        <div class="cet-tab active" id="upd-tab-1"
+                            style="flex:1; display:flex; align-items:center; justify-content:center; gap:12px; cursor:pointer;"
+                            onclick="switchUpdateTab(1)">
+                            <div class="cet-tab-num"
+                                style="width:32px; height:32px; background:#e41837; color:white; font-weight:700;">1
+                            </div>
+                            <div style="text-align:left;">
+                                <div style="font-size:14px; font-weight:700; color:#111;">Update Hierarchy</div>
+                                <div style="font-size:11px; color:#6b7280;">Modify level structure</div>
+                            </div>
+                        </div>
+                        <div class="cet-tab" id="upd-tab-2"
+                            style="flex:1; display:flex; align-items:center; justify-content:center; gap:12px; cursor:pointer;"
+                            onclick="switchUpdateTab(2)">
+                            <div class="cet-tab-num"
+                                style="width:32px; height:32px; background:#e5e7eb; color:#6b7280; font-weight:700;">2
+                            </div>
+                            <div style="text-align:left;">
+                                <div style="font-size:14px; font-weight:700; color:#374151;">Update Attributes</div>
+                                <div style="font-size:11px; color:#6b7280;">Adjust attributes</div>
+                            </div>
+                        </div>
+                        <div
+                            style="width: 40px; display:flex; align-items:center; justify-content:center; opacity:0.3;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                        <div class="cet-tab" id="upd-tab-3"
+                            style="flex:1; display:flex; align-items:center; justify-content:center; gap:12px; cursor:pointer;"
+                            onclick="switchUpdateTab(3)">
+                            <div class="cet-tab-num"
+                                style="width:32px; height:32px; background:#e5e7eb; color:#6b7280; font-weight:700;">3
+                            </div>
+                            <div style="text-align:left;">
+                                <div style="font-size:14px; font-weight:700; color:#374151;">Excel Upload</div>
+                                <div style="font-size:11px; color:#6b7280;">Refresh entity data</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cet-tab-content">
+                        <!-- Tab 1: Hierarchy Update -->
+                        <div class="cet-tab-pane active" id="upd-pane-tab-1">
+                            <div
+                                style="display: grid; grid-template-columns: 320px 1fr; gap: 40px; padding: 32px; align-items: start;">
+                                <!-- Left: Define Levels -->
+                                <div class="cet-config-left">
+                                    <h3 class="config-section-title">Hierarchy Configuration</h3>
+                                    <p class="config-section-subtitle">Modify levels for <strong
+                                            id="update-entity-name-label" style="color:#e41837;">...</strong></p>
+
+                                    <div style="margin-bottom: 24px;">
+                                        <label
+                                            style="display:block; font-size:13px; font-weight:700; margin-bottom:10px;">Entity
+                                            name</label>
+                                        <input type="text" id="update-entity-type-name" class="cet-input"
+                                            placeholder="e.g. Retail Branch" style="width:100%;">
+                                    </div>
+
+                                    <div style="margin-bottom: 24px;">
+                                        <div class="hierarchy-stepper-control"
+                                            style="display:flex; align-items:center; gap:16px; background:#f8f9fa; border:1px solid #e5e7eb; padding:12px; border-radius:12px; width:fit-content;">
+                                            <button class="stepper-btn" id="upd-geo-level-minus"
+                                                style="width:36px; height:36px; border-radius:50%; border:1px solid #e5e7eb; background:white; color:#e41837; font-size:20px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">&minus;</button>
+                                            <div style="text-align:center; min-width:80px;">
+                                                <div id="upd-geo-level-display"
+                                                    style="font-size:20px; font-weight:800; color:#111;">4</div>
+                                                <div style="font-size:11px; color:#6b7280; font-weight:600;">
+                                                    Levels</div>
+                                            </div>
+                                            <button class="stepper-btn" id="upd-geo-level-plus"
+                                                style="width:36px; height:36px; border-radius:50%; border:1px solid #e5e7eb; background:white; color:#e41837; font-size:20px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">&plus;</button>
+                                        </div>
+                                        <input type="hidden" id="upd-geo-level-count" value="4">
+                                    </div>
+
+                                    <div style="margin-bottom: 24px;">
+                                        <label
+                                            style="display:block; font-size:13px; font-weight:700; margin-bottom:10px;">Level
+                                            designations</label>
+                                        <div id="update-geo-levels-container">
+                                            <!-- Populated by JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right: Preview -->
+                                <div style="display: flex; flex-direction: column; gap: 20px;">
+                                    <h3 class="config-section-title" style="font-family: 'Outfit', sans-serif;">Changes
+                                        preview</h3>
+                                    <p class="config-section-subtitle">Real-time visualization of the updated structure
+                                    </p>
+                                    <div class="preview-card-list" id="update-hierarchy-preview"
+                                        style="background: #fcfcfc; border-radius: 20px; padding: 24px; border: 1px solid #edf0f2;">
+                                        <!-- Populated by JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cet-action-row"
+                                style="padding:20px; border-top:1px solid #eee; background:#fafafa; border-radius: 0 0 12px 12px; margin-top:0;">
+                                <button class="action-btn" onclick="showMasterAssessmentEntityList()">Cancel
+                                    Changes</button>
+                                <button class="cet-create-btn" style="background:#e41837;"
+                                    onclick="switchUpdateTab(2)">Next: Attributes &rarr;</button>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Attributes Update -->
+                        <div class="cet-tab-pane" id="upd-pane-tab-2">
+                            <div class="attribute-setup-container" style="padding: 24px;">
+                                <div class="attribute-setup-right" style="width: 100%;">
+                                    <h3 class="config-section-title">Update Attributes Configuration</h3>
+                                    <p class="config-section-subtitle">Modify custom attributes mapped to the lowest
+                                        hierarchy level.</p>
+                                    <div id="update-attributes-tables-container" style="margin-top:20px;">
+                                        <!-- Populated by JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cet-action-row"
+                                style="padding:20px; border-top:1px solid #eee; background:#fafafa; border-radius: 0 0 12px 12px; margin-top:0;">
+                                <button class="action-btn" onclick="switchUpdateTab(1)">Back</button>
+                                <button class="cet-create-btn" style="background:#e41837;"
+                                    onclick="switchUpdateTab(3)">Next: Excel Upload &rarr;</button>
+                            </div>
+                        </div>
+
+                        <!-- Tab 3: Excel Upload (Update) -->
+                        <div class="cet-tab-pane" id="upd-pane-tab-3">
+                            <div class="excel-upload-container" style="padding: 24px; background: #fff;">
+                                <div style="max-width: 100%; margin: 0 auto;">
+                                    <div style="text-align: center; margin-bottom: 24px;">
+                                        <h2 style="font-size: 20px; font-weight: 800; color: #111; margin-bottom: 4px;">
+                                            Refresh Entity Data</h2>
+                                        <p style="color: #6b7280; font-size: 14px;">Upload a new Excel file to sync
+                                            latest branches/nodes.</p>
+                                    </div>
+
+                                    <div id="upd-excel-drop-zone"
+                                        style="border: 2px dashed #e5e7eb; border-radius: 12px; padding: 32px; text-align: center; background: #f9fafb; cursor: pointer;"
+                                        onclick="document.getElementById('upd-excel-file-input').click();">
+                                        <input type="file" id="upd-excel-file-input" style="display: none;"
+                                            accept=".xlsx, .xls, .csv">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#e41837"
+                                            stroke-width="2" style="margin-bottom:12px;">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="17 8 12 3 7 8" />
+                                            <line x1="12" y1="3" x2="12" y2="15" />
+                                        </svg>
+                                        <div style="font-weight:700; font-size:14px;">Click to upload updated data</div>
+                                        <div id="upd-selected-file-name"
+                                            style="margin-top: 8px; color: #e41837; font-weight:600; font-size:12px; display:none;">
+                                        </div>
+                                    </div>
+
+                                    <div id="upd-mapping-area" style="margin-top: 24px; display: none;">
+                                        <table
+                                            style="width: 100%; border-collapse: collapse; font-size: 13px; border: 1px solid #eee;">
+                                            <thead style="background: #f8f9fa;">
+                                                <tr>
+                                                    <th style="text-align: left; padding: 10px;">System Attribute</th>
+                                                    <th style="text-align: left; padding: 10px;">Excel Header</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="upd-excel-mapping-tbody"></tbody>
+                                        </table>
+
+
+                                    </div>
+
+                                    <!-- Uploaded Data Statistics (Graphical) -->
+                                    <div id="upd-upload-stats-section"
+                                        style="margin-top: 40px; display: none; padding-top: 32px; border-top: 1px solid #eee;">
+                                        <h3
+                                            style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #111; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e41837"
+                                                stroke-width="2.5">
+                                                <path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z" />
+                                            </svg>
+                                            Uploaded data distribution
+                                        </h3>
+                                        <div id="upd-upload-stats-container">
+                                            <!-- Graphical cards will appear here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cet-action-row"
+                                style="padding:20px; border-top:1px solid #eee; background:#fafafa; border-radius: 0 0 12px 12px; margin-top:0;">
+                                <button class="action-btn" onclick="switchUpdateTab(2)">Back</button>
+                                <button class="cet-create-btn" style="background:#e41837;"
+                                    onclick="saveEntityTypeUpdate()">Confirm & Save Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </main>
+
+    <!-- =====================================================
+         Success Modal
+         ===================================================== -->
+    <div id="success-modal" class="modal-overlay" style="display:none;">
+        <div class="success-modal-card">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="9 12 11 14 15 10"></polyline>
+                </svg>
+            </div>
+            <h3>Entity Type Created Successfully!</h3>
+            <p id="success-modal-msg">The new entity type has been saved.</p>
+            <button class="cet-create-btn" id="success-modal-ok" style="margin-top:8px;">OK</button>
+        </div>
+    </div>
+
+    <!-- Global Module Switch Loader -->
+    <div id="module-loader" class="modal-overlay"
+        style="display:none; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(4px); z-index: 5000;">
+        <div class="loader-content" style="text-align: center;">
+            <div class="premium-spinner"></div>
+            <p
+                style="margin-top: 16px; font-weight: 600; color: #1a1a1a; font-family: 'Outfit', sans-serif; letter-spacing: 0.02em;">
+                Initializing Module...</p>
+        </div>
+    </div>
+
+    <!-- Global User Detail Modal -->
+    <div id="global-user-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-content user-detail-card" style="width: 450px; padding:0; border:none;">
+            <div id="global-user-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Generic Custom Confirm Modal -->
+    <div id="custom-confirm-modal" class="modal-overlay"
+        style="display:none; z-index: 11000; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);">
+        <div class="success-modal-card" style="width: 420px; padding: 32px; border: 1px solid #eee;">
+            <div id="confirm-modal-icon"
+                style="width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);">
+            </div>
+            <h3 id="confirm-modal-title"
+                style="font-size: 22px; font-weight: 800; color: #111; margin-bottom: 12px; font-family: 'Outfit', sans-serif;">
+                Confirm Action</h3>
+            <p id="confirm-modal-msg" style="margin-bottom: 32px; color: #4b5563; line-height: 1.6; font-size: 15px;">
+                Are you sure you want to proceed?</p>
+            <div style="display: flex; gap: 16px; justify-content: center;">
+                <button class="action-btn" id="confirm-modal-cancel"
+                    style="flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; border: 1px solid #e5e7eb; background: white; cursor: pointer;">Cancel</button>
+                <button class="cet-create-btn" id="confirm-modal-ok"
+                    style="flex: 1; padding: 12px; border-radius: 8px; font-weight: 700; background: #e41837; color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(228, 24, 55, 0.2);">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
