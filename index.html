@@ -96,6 +96,48 @@
                             </svg>
                             Entity User Mapping Upload
                         </a>
+                        <a href="#" id="nav-entity-master-upload" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Entity Upload Page
+                        </a>
+                        <div class="admin-section-label">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="8.5" cy="7" r="4"></circle>
+                                <path d="M17 11h4"></path>
+                                <path d="M19 9v4"></path>
+                            </svg>
+                            Holiday Management
+                        </div>
+                        <a href="#" id="nav-holiday-calendar" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="17" rx="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Holiday Calendar
+                        </a>
+                        <a href="#" id="nav-holiday-list" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 6h16"></path>
+                                <path d="M4 12h16"></path>
+                                <path d="M4 18h16"></path>
+                            </svg>
+                            Holiday List
+                        </a>
+                        <a href="#" id="nav-holiday-upload" class="admin-sub-link">
+                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Upload Holidays
+                        </a>
 
                         <div class="admin-section-label">
                             <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1038,7 +1080,8 @@
                     style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
                     <div>
                         <h1>Entity User Mapping Upload</h1>
-                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Select an Entity Type, download the role-wise Excel template, add the Sol ID and User IDs, and upload the file.</p>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Select an Entity Type,
+                            download the role-wise Excel template, add the Sol ID and User IDs, and upload the file.</p>
                     </div>
                     <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
                         <select id="entity-user-upload-entity-select"
@@ -1046,7 +1089,8 @@
                             <option value="">Select Entity Type</option>
                         </select>
                         <button class="cet-create-btn" id="entity-download-user-template-btn"
-                            style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" disabled>
+                            style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);"
+                            disabled>
                             Download Excel Template
                         </button>
                     </div>
@@ -1054,12 +1098,17 @@
 
                 <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px; margin-top:24px;">
                     <div class="cet-card" style="padding:24px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
                             <div>
-                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Upload Entity User Mapping Excel</h2>
-                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">Use the downloaded template and upload one worksheet with the selected Entity Type columns.</p>
+                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Upload
+                                    Entity User Mapping Excel</h2>
+                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">Use the downloaded template
+                                    and upload one worksheet with the selected Entity Type columns.</p>
                             </div>
-                            <span style="font-size:12px; font-weight:700; color:#e41837; background:#fff5f6; padding:6px 10px; border-radius:999px;">Sol ID + role-wise User IDs</span>
+                            <span
+                                style="font-size:12px; font-weight:700; color:#e41837; background:#fff5f6; padding:6px 10px; border-radius:999px;">Sol
+                                ID + role-wise User IDs</span>
                         </div>
 
                         <div id="entity-upload-drop-zone"
@@ -1083,8 +1132,10 @@
                                 style="margin-top:18px; color:#e41837; font-weight:700; display:none;"></div>
                         </div>
 
-                        <div style="margin-top:18px; padding:16px; background:#f8fafc; border-radius:12px; border:1px solid #e5e7eb;">
-                            <div style="font-size:12px; font-weight:700; color:#111; margin-bottom:8px;">Selected role columns</div>
+                        <div
+                            style="margin-top:18px; padding:16px; background:#f8fafc; border-radius:12px; border:1px solid #e5e7eb;">
+                            <div style="font-size:12px; font-weight:700; color:#111; margin-bottom:8px;">Selected role
+                                columns</div>
                             <div id="entity-user-upload-role-summary"
                                 style="display:flex; flex-wrap:wrap; gap:8px; font-size:12px; color:#374151;">
                                 Select an entity type to view the role columns.
@@ -1092,25 +1143,68 @@
                         </div>
 
                         <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-                            <button class="cet-create-btn" id="entity-upload-submit-btn" style="background:#e41837;" disabled>Upload Mapping</button>
+                            <button class="cet-create-btn" id="entity-upload-submit-btn" style="background:#e41837;"
+                                disabled>Upload Mapping</button>
                             <!-- <button class="action-btn" id="entity-download-result-btn" style="background:white; border:1px solid #d1d5db; color:#111827;" disabled>Download Result File</button> -->
-                            <span id="entity-upload-status" style="font-size:13px; color:#4b5563;">Select an entity type to begin.</span>
+                            <span id="entity-upload-status" style="font-size:13px; color:#4b5563;">Select an entity type
+                                to begin.</span>
                         </div>
                     </div>
 
                     <div class="cet-card" style="padding:24px;">
-                        <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Upload guidance</h2>
+                        <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Upload guidance
+                        </h2>
                         <div style="display:grid; gap:14px; color:#4b5563; font-size:14px; line-height:1.6;">
-                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
-                                Select the Entity Type first so the template shows the relevant roles for that hierarchy.
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Select the Entity Type first so the template shows the relevant roles for that
+                                hierarchy.
                             </div>
-                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
-                                Each row should have a Sol ID and at least one User ID in the role columns that apply to the selected Entity Type.
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Each row should have a Sol ID and at least one User ID in the role columns that apply to
+                                the selected Entity Type.
                             </div>
-                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
-                                The upload history and latest result file are saved locally in this browser so you can download them anytime.
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                The upload history and latest result file are saved locally in this browser so you can
+                                download them anytime.
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="cet-card" style="padding:24px; margin-top:24px;">
+                    <div
+                        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                        <div>
+                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Upload history
+                            </h2>
+                            <p style="font-size:13px; color:#6b7280;">Tracks each upload with the file name, timestamp
+                                and pass/fail totals.</p>
+                        </div>
+                        <div id="entity-master-upload-log-note" style="font-size:13px; font-weight:700; color:#e41837;">
+                            No upload result file has been generated yet.</div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                            <thead>
+                                <tr style="background:#fafafa; color:#374151; text-align:left;">
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">File Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Timestamp</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Total Record
+                                        Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Passed</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Failed</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="entity-master-upload-log-body">
+                                <tr>
+                                    <td colspan="6" style="padding:16px 14px; color:#6b7280;">No upload logs yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -1141,11 +1235,423 @@
                     </div>
                 </div> -->
 
+
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE H1: Holiday Calendar Management
+             ===================================================== -->
+        <div class="main-page-box" id="holiday-calendar-page" style="display:none; overflow-y:auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div>
+                        <h1>Holiday Calendar Management</h1>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Manage default weekend
+                            rules, configured holidays, and overrides across entity types and geography.</p>
+                    </div>
+                    <!-- <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                        <button class="cet-create-btn" id="holiday-go-to-list-btn" style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">Holiday List</button>
+                        <button class="cet-create-btn" id="holiday-go-to-upload-btn" style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">Upload Holidays</button>
+                    </div> -->
+                </div>
+                <div class="holiday-filter-row"
+                    style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px; margin-top:24px; align-items:end;">
+                    <div>
+                        <label class="field-label">Entity Type</label>
+                        <select id="holiday-entity-type-filter" class="cet-input" style="width:100%;">
+                            <option value="Retail Branch">Retail Branch</option>
+                            <option value="ATM">ATM</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">Year</label>
+                        <select id="holiday-year-filter" class="cet-input" style="width:100%;"></select>
+                    </div>
+                    <div>
+                        <label class="field-label">Month</label>
+                        <select id="holiday-month-filter" class="cet-input" style="width:100%;"></select>
+                    </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:flex-end;">
+                        <button class="action-btn" id="holiday-refresh-btn">Refresh</button>
+                        <button class="action-btn" id="holiday-export-calendar-btn">Export</button>
+                    </div>
+                </div>
+                <div class="holiday-calendar-body" style="margin-top: 24px;">
+                    <!-- Left Section: Interactive Calendar Panel -->
+                    <div class="holiday-calendar-panel" style="margin-top:0;">
+                        <div class="holiday-calendar-header"
+                            style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+                            <div>
+                                <div id="holiday-calendar-title" style="font-size:18px; font-weight:700; color:#111;">
+                                </div>
+                                <div style="font-size:13px; color:#6b7280; margin-top:4px;">Click a date to create a
+                                    holiday or override weekend behavior.</div>
+                            </div>
+                            <!-- <div class="holiday-legend" style="display:flex; flex-wrap:wrap; gap:12px;">
+                                <div class="holiday-legend-item holiday-legend-holiday">Holiday</div>
+                                <div class="holiday-legend-item holiday-legend-configured">Configured Holiday</div>
+                                <div class="holiday-legend-item holiday-legend-working">Configured Working Weekend</div>
+                                <div class="holiday-legend-item holiday-legend-special">Special Closure</div>
+                                <div class="holiday-legend-item holiday-legend-normal">Working Day</div>
+                            </div> -->
+                        </div>
+                        <div id="holiday-calendar-grid" class="holiday-calendar-grid"></div>
+                    </div>
+
+                    <!-- Right Section: Create/Edit Holiday Form -->
+                    <div class="holiday-form-container" id="holiday-form-container">
+
+                        <!-- Embedded Holiday Form Card (moved here) -->
+                        <div id="holiday-drawer" class="holiday-drawer" style="display:none;">
+                            <div class="holiday-drawer-backdrop" id="holiday-drawer-backdrop"></div>
+                            <div class="holiday-drawer-panel">
+                                <div class="holiday-drawer-header">
+                                    <div>
+                                        <h2 id="holiday-drawer-title">Create Holiday</h2>
+                                        <p id="holiday-drawer-date"
+                                            style="margin:4px 0 0; color:#475569; font-size:13px;"></p>
+                                    </div>
+                                    <button class="action-btn" id="holiday-drawer-close-btn"
+                                        style="width:36px; height:36px;">×</button>
+                                </div>
+                                <div class="holiday-drawer-body">
+                                    <div id="holiday-existing-holiday-card" class="holiday-existing-holiday-card" style="display:none;"></div>
+                                    <div class="form-group">
+                                        <label class="field-label">Holiday Name *</label>
+                                        <input type="text" id="holiday-name-input" class="cet-input"
+                                            placeholder="Enter holiday name">
+                                    </div>
+                                    <!-- Entity Type select removed: uses current entity context -->
+                                    <div class="form-group">
+                                        <label class="field-label">Applicable Geography Level *</label>
+                                        <select id="holiday-drawer-geo-level" class="cet-input">
+                                            <option value="Region">Region</option>
+                                            <option value="Circle">Circle</option>
+                                            <option value="Cluster">Cluster</option>
+                                            <option value="Branch">Branch</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="field-label">Applicable Geography *</label>
+                                        <input type="text" id="holiday-geo-search" class="cet-input holiday-geo-search" placeholder="Search geographies..." style="margin-bottom:8px;" />
+                                        <select id="holiday-drawer-geo-values" class="cet-input" multiple size="6" style="display:none;"></select>
+                                        <div class="custom-geo-checkbox-list" id="custom-geo-checkbox-list"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="field-label">Remarks</label>
+                                        <textarea id="holiday-remarks" class="cet-input" rows="4"
+                                            placeholder="Add optional notes"></textarea>
+                                    </div>
+                                    <div class="holiday-drawer-actions">
+                                        <button class="action-btn" id="holiday-drawer-cancel-btn">Cancel</button>
+                                        <button class="cet-create-btn" id="holiday-drawer-save-btn"
+                                            style="background:#e41837;">Create Holiday</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE H2: Holiday List
+             ===================================================== -->
+        <div class="main-page-box" id="holiday-list-page" style="display:none; overflow-y:auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div>
+                        <h1>Holiday List</h1>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Review configured
+                            holidays, overrides, and special closures across geographies.</p>
+                    </div>
+                    <!-- <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                        <button class="cet-create-btn" id="holiday-calendar-tab-btn" style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">Holiday Calendar</button>
+                        <button class="cet-create-btn" id="holiday-upload-tab-btn" style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">Upload Holidays</button>
+                    </div> -->
+                </div>
+                <div class="holiday-filter-row"
+                    style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px; margin-top:24px; align-items:end;">
+                    <div>
+                        <label class="field-label">Entity Type</label>
+                        <select id="holiday-list-entity-filter" class="cet-input" style="width:100%;">
+                            <option value="">All</option>
+                            <option value="Retail Branch">Retail Branch</option>
+                            <option value="ATM">ATM</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">Geography Level</label>
+                        <select id="holiday-geography-level-filter" class="cet-input" style="width:100%;">
+                            <option value="">All</option>
+                            <option value="Region">Region</option>
+                            <option value="Circle">Circle</option>
+                            <option value="Cluster">Cluster</option>
+                            <option value="Branch">Branch</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">Geography</label>
+                        <select id="holiday-geography-filter" class="cet-input" style="width:100%;">
+                            <option value="">All</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">Holiday Type</label>
+                        <select id="holiday-type-filter" class="cet-input" style="width:100%;">
+                            <option value="">All</option>
+                            <option value="Configured Holiday">Configured Holiday</option>
+                            <option value="Special Closure">Special Closure</option>
+                            <option value="Working Weekend">Configured Working Weekend</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">Status</label>
+                        <select id="holiday-status-filter" class="cet-input" style="width:100%;">
+                            <option value="All">All</option>
+                            <option value="Active">Active</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">Search</label>
+                        <input type="text" id="holiday-search-filter" class="cet-input" placeholder="Search holidays..."
+                            style="width:100%;">
+                    </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end;">
+                        <button class="action-btn" id="holiday-reset-filter-btn">Reset</button>
+                        <button class="action-btn" id="holiday-export-list-btn">Export Excel</button>
+                    </div>
+                </div>
+                <div class="cet-card" style="padding:0; margin-top:24px; overflow:auto;">
+                    <table class="cet-table" id="holiday-list-table">
+                        <thead>
+                            <tr>
+                                <th>Holiday Name</th>
+                                <th>Holiday Date</th>
+                                <th>Day</th>
+                                <th>Holiday Type</th>
+                                <th>Entity Type</th>
+                                <th>Geography Level</th>
+                                <th>Geography</th>
+                                <th>Working Status</th>
+                                <th>Remarks</th>
+                                <th>Created By</th>
+                                <th>Created Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holiday-list-body">
+                        </tbody>
+                    </table>
+                </div>
+                <div
+                    style="display:flex; justify-content:flex-end; align-items:center; gap:12px; margin-top:18px; flex-wrap:wrap;">
+                    <button class="action-btn" id="holiday-prev-page-btn">Previous</button>
+                    <span id="holiday-list-page-indicator" style="font-size:13px; color:#475569;">Page 1</span>
+                    <button class="action-btn" id="holiday-next-page-btn">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE H3: Upload Holidays via Excel
+             ===================================================== -->
+        <div class="main-page-box" id="holiday-upload-page" style="display:none; overflow-y:auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div>
+                        <h1>Upload Holidays</h1>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Upload a holiday
+                            template and validate it before importing into the calendar.</p>
+                    </div>
+                    <!-- <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                        <button class="cet-create-btn" id="holiday-calendar-tab-btn-2" style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">Holiday Calendar</button>
+                        <button class="cet-create-btn" id="holiday-list-tab-btn-2" style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">Holiday List</button>
+                    </div> -->
+                </div>
+                <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px; margin-top:24px;">
+                    <div class="cet-card" style="padding:24px;">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:18px;">
+                            <div>
+                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Download the
+                                    Excel template</h2>
+                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">Download a template matching
+                                    the required holiday fields and import back the completed file.</p>
+                            </div>
+                            <button class="cet-create-btn" id="holiday-download-template-btn"
+                                style="background:#ffffff; color:#e41837; border:none;">Download Template</button>
+                        </div>
+                        <div id="holiday-upload-drop-zone"
+                            style="border:2px dashed #e5e7eb; border-radius:16px; padding:32px; text-align:center; background:#f9fafb; cursor:pointer; transition:all 0.3s;"
+                            onclick="document.getElementById('holiday-upload-file-input').click();">
+                            <input type="file" id="holiday-upload-file-input" accept=".xlsx,.xls,.csv"
+                                style="display:none;">
+                            <div
+                                style="width:64px; height:64px; margin:0 auto 20px; border-radius:50%; background:white; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#e41837"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Select a file to
+                                upload</h3>
+                            <p style="font-size:13px; color:#6b7280;">Supports XLSX, XLS, and CSV.</p>
+                            <div id="holiday-upload-file-name"
+                                style="margin-top:18px; color:#e41837; font-weight:700; display:none;"></div>
+                        </div>
+                        <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                            <button class="cet-create-btn" id="holiday-import-btn" style="background:#e41837;">Import
+                                Holidays</button>
+                            <span id="holiday-upload-instructions" style="font-size:13px; color:#4b5563;">Upload a file
+                                and then click Import.</span>
+                        </div>
+                    </div>
+                    <div class="cet-card" style="padding:24px;">
+                        <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Validation Summary
+                        </h2>
+                        <div id="holiday-upload-summary" style="display:grid; gap:12px; font-size:14px; color:#374151;">
+                            <div
+                                style="padding:16px; background:#f8fafc; border-radius:12px; border:1px solid #e5e7eb;">
+                                Total Records: <strong id="holiday-upload-total">0</strong></div>
+                            <div
+                                style="padding:16px; background:#f8fafc; border-radius:12px; border:1px solid #e5e7eb;">
+                                Successful Records: <strong id="holiday-upload-success">0</strong></div>
+                            <div
+                                style="padding:16px; background:#f8fafc; border-radius:12px; border:1px solid #e5e7eb;">
+                                Failed Records: <strong id="holiday-upload-failed">0</strong></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="cet-card" style="padding:24px; margin-top:24px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                    <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Expected Template
+                        Columns</h2>
+                    <div style="display:grid; gap:10px; font-size:14px; color:#374151;">
+                        <div>Holiday Name</div>
+                        <div>Holiday Date</div>
+                        <div>Holiday Type</div>
+                        <div>Entity Type</div>
+                        <div>Geography Level</div>
+                        <div>Geography</div>
+                        <div>Remarks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             PAGE 5: Upload User Page
+             ===================================================== -->
+        <!-- =====================================================
+             PAGE X: Entity Upload Page (Master)
+             ===================================================== -->
+        <div class="main-page-box" id="entity-master-upload-page" style="display:none; overflow-y:auto;">
+            <div class="cet-page-wrapper">
+                <div class="cet-section-header"
+                    style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div>
+                        <h1>Entity Upload Page</h1>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Select an Entity Type,
+                            download the template with the required headers, and upload your completed file to create
+                            entities.</p>
+                    </div>
+                    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                        <select id="entity-master-entity-select"
+                            style="padding:10px 12px; border-radius:8px; border:1px solid #ffffff; min-width:260px; font-size:14px;">
+                            <option value="">Select Entity Type</option>
+                        </select>
+                        <button class="cet-create-btn" id="entity-master-download-template-btn"
+                            style="background:white; color:#e41837; border:none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);"
+                            disabled>Download Template</button>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px; margin-top:24px;">
+                    <div class="cet-card" style="padding:24px;">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                            <div>
+                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Download
+                                    template and upload entity data</h2>
+                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">Template will contain the
+                                    headers required for creating the selected entity type.</p>
+                            </div>
+                            <span
+                                style="font-size:12px; font-weight:700; color:#e41837; background:#fff5f6; padding:6px 10px; border-radius:999px;">Sol
+                                ID + Geography columns</span>
+                        </div>
+
+                        <div id="entity-master-fields"
+                            style="margin-bottom:18px; color:#374151; font-size:14px; display:flex; gap:8px; flex-wrap:wrap;">
+                            Select an entity type to view required fields.
+                        </div>
+
+                        <div id="entity-master-drop-zone"
+                            style="border:2px dashed #e5e7eb; border-radius:16px; padding:32px; text-align:center; background:#f9fafb; cursor:pointer; transition:all 0.3s;"
+                            onclick="document.getElementById('entity-master-file-input').click();">
+                            <input type="file" id="entity-master-file-input" accept=".xlsx,.xls,.csv"
+                                style="display:none;">
+                            <div
+                                style="width:64px; height:64px; margin:0 auto 20px; border-radius:50%; background:white; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#e41837"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Click to select
+                                or drag and drop a file</h3>
+                            <p style="font-size:13px; color:#6b7280;">Supports XLSX, XLS and CSV files</p>
+                            <div id="entity-master-file-name"
+                                style="margin-top:18px; color:#e41837; font-weight:700; display:none;"></div>
+                        </div>
+
+                        <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                            <button class="cet-create-btn" id="entity-master-upload-btn" style="background:#e41837;"
+                                disabled>Upload Entities</button>
+                            <span id="entity-master-status" style="font-size:13px; color:#4b5563;">Select an entity type
+                                to begin.</span>
+                        </div>
+                    </div>
+
+
+                    <div class="cet-card" style="padding:24px;">
+                        <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Upload guidance
+                        </h2>
+                        <div style="display:grid; gap:14px; color:#4b5563; font-size:14px; line-height:1.6;">
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Download the template, fill Sol ID and the geography columns, and upload the completed
+                                file.
+                            </div>
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Ensure Sol ID is unique. Geography columns should match the template headers exactly.
+                            </div>
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Upload history is stored locally in this browser for later download.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cet-card" style="padding:24px; margin-top:24px;">
+                    <div
+                        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
                         <div>
-                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Upload history</h2>
-                            <p style="font-size:13px; color:#6b7280;">Tracks each upload with the Entity Type, file name, timestamp and pass/fail totals.</p>
+                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Upload history
+                            </h2>
+                            <p style="font-size:13px; color:#6b7280;">Tracks each upload with the Entity Type, file
+                                name, timestamp and pass/fail totals.</p>
                         </div>
                         <div id="entity-upload-log-note" style="font-size:13px; font-weight:700; color:#e41837;">
                             No upload result file has been generated yet.
@@ -1157,7 +1663,8 @@
                                 <tr style="background:#fafafa; color:#374151; text-align:left;">
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">File Uploaded</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Timestamp</th>
-                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Total Record Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Total Record
+                                        Uploaded</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Passed</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Failed</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Result</th>
@@ -1173,37 +1680,42 @@
                 </div>
             </div>
         </div>
-
-        <!-- =====================================================
-             PAGE 5: Upload User Page
-             ===================================================== -->
         <div class="main-page-box" id="upload-user-page" style="display:none; overflow-y:auto;">
             <div class="cet-page-wrapper">
                 <div class="cet-section-header"
                     style="background:#e41837; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
                     <div>
                         <h1>Upload User Page</h1>
-                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Use the Upload and Deactivate sections below to manage users with separate templates and guidance.</p>
+                        <p style="margin-top:8px; font-size:14px; color:rgba(255,255,255,0.9);">Use the Upload and
+                            Deactivate sections below to manage users with separate templates and guidance.</p>
                     </div>
                 </div>
 
                 <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px; margin-top:24px;">
                     <div class="cet-card" style="padding:24px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
                             <div>
-                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Upload User Excel</h2>
-                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">The file should contain the required columns and one row per user.</p>
+                                <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Upload User
+                                    Excel</h2>
+                                <p style="font-size:13px; color:#6b7280; line-height:1.5;">The file should contain the
+                                    required columns and one row per user.</p>
                             </div>
                             <!-- <span style="font-size:12px; font-weight:700; color:#e41837; background:#fff5f6; padding:6px 10px; border-radius:999px;">User Login ID • User Name • User Email ID</span> -->
                         </div>
                         <div style="margin-bottom:16px;">
-                            <button class="action-btn" id="download-user-template-btn" style="background:#ffffff; border:1px solid #e41837; color:#e41837;">Download Upload Template</button>
+                            <button class="action-btn" id="download-user-template-btn"
+                                style="background:#ffffff; border:1px solid #e41837; color:#e41837;">Download Upload
+                                Template</button>
                         </div>
                         <div style="display:grid; gap:12px; color:#4b5563; font-size:14px; margin-bottom:16px;">
-                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
-                                Download and use the Upload Template to add new users with User Login ID, User Name, and User Email ID.
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Download and use the Upload Template to add new users with User Login ID, User Name, and
+                                User Email ID.
                             </div>
-                            <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
                                 Each row must contain a valid email address and a unique User Login ID.
                             </div>
                         </div>
@@ -1222,36 +1734,47 @@
                                     <line x1="12" y1="3" x2="12" y2="15"></line>
                                 </svg>
                             </div>
-                            <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Click to select or drag and drop a file</h3>
+                            <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Click to select
+                                or drag and drop a file</h3>
                             <p style="font-size:13px; color:#6b7280;">Supports XLSX, XLS and CSV files</p>
                             <div id="user-upload-file-name"
                                 style="margin-top:18px; color:#e41837; font-weight:700; display:none;"></div>
                         </div>
 
                         <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-                            <button class="cet-create-btn" id="upload-user-submit-btn" style="background:#e41837;" disabled>Upload Users</button>
-                            <span id="user-upload-status" style="font-size:13px; color:#4b5563;">Select a file to begin.</span>
+                            <button class="cet-create-btn" id="upload-user-submit-btn" style="background:#e41837;"
+                                disabled>Upload Users</button>
+                            <span id="user-upload-status" style="font-size:13px; color:#4b5563;">Select a file to
+                                begin.</span>
                         </div>
                     </div>
 
                     <div style="display:grid; gap:24px;">
                         <div class="cet-card" style="padding:24px;">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
                                 <div>
-                                    <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">Deactivate Users</h2>
-                                    <p style="font-size:13px; color:#6b7280; line-height:1.5;">Upload a file with User ID / SAP ID to deactivate existing users.</p>
+                                    <h2 style="font-size:18px; font-weight:800; margin-bottom:4px; color:#111;">
+                                        Deactivate Users</h2>
+                                    <p style="font-size:13px; color:#6b7280; line-height:1.5;">Upload a file with User
+                                        ID / SAP ID to deactivate existing users.</p>
                                 </div>
                                 <!-- <span style="font-size:12px; font-weight:700; color:#e41837; background:#fff5f6; padding:6px 10px; border-radius:999px;">User Login ID • User ID</span> -->
                             </div>
                             <div style="margin-bottom:16px;">
-                                <button class="action-btn" id="download-deactivate-template-btn" style="background:#ffffff; border:1px solid #e41837; color:#e41837;">Download Deactivate Template</button>
+                                <button class="action-btn" id="download-deactivate-template-btn"
+                                    style="background:#ffffff; border:1px solid #e41837; color:#e41837;">Download
+                                    Deactivate Template</button>
                             </div>
                             <div style="display:grid; gap:12px; color:#4b5563; font-size:14px; margin-bottom:16px;">
-                                <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                <div
+                                    style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
                                     Download and use the Deactivate Template to mark existing users for deactivation.
                                 </div>
-                                <div style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
-                                    Mention the User ID/SAP ID of the users to be deactivated in the Excel file and upload the file to deactivate the users.
+                                <div
+                                    style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                    Mention the User ID/SAP ID of the users to be deactivated in the Excel file and
+                                    upload the file to deactivate the users.
                                 </div>
                             </div>
 
@@ -1269,15 +1792,19 @@
                                         <line x1="12" y1="3" x2="12" y2="15"></line>
                                     </svg>
                                 </div>
-                                <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Click to select or drag and drop a file</h3>
+                                <h3 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Click to
+                                    select or drag and drop a file</h3>
                                 <p style="font-size:13px; color:#6b7280;">Supports XLSX, XLS and CSV files</p>
                                 <div id="deactivate-upload-file-name"
                                     style="margin-top:18px; color:#e41837; font-weight:700; display:none;"></div>
                             </div>
 
                             <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-                                <button class="action-btn" id="upload-deactivate-submit-btn" style="background:#ffffff; border:1px solid #e41837; color:#e41837;" disabled>Upload Deactivate File</button>
-                                <span id="deactivate-upload-status" style="font-size:13px; color:#4b5563;">Select a file to begin.</span>
+                                <button class="action-btn" id="upload-deactivate-submit-btn"
+                                    style="background:#ffffff; border:1px solid #e41837; color:#e41837;" disabled>Upload
+                                    Deactivate File</button>
+                                <span id="deactivate-upload-status" style="font-size:13px; color:#4b5563;">Select a file
+                                    to begin.</span>
                             </div>
                         </div>
 
@@ -1328,10 +1855,13 @@
                 </div> -->
 
                 <div class="cet-card" style="padding:24px; margin-top:24px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
+                    <div
+                        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px; flex-wrap:wrap;">
                         <div>
-                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Upload history</h2>
-                            <p style="font-size:13px; color:#6b7280;">Tracks each upload with the file name, timestamp and pass/fail totals.</p>
+                            <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:4px;">Upload history
+                            </h2>
+                            <p style="font-size:13px; color:#6b7280;">Tracks each upload with the file name, timestamp
+                                and pass/fail totals.</p>
                         </div>
                         <div id="user-upload-log-note" style="font-size:13px; font-weight:700; color:#e41837;">
                             No upload result file has been generated yet.
@@ -1343,7 +1873,8 @@
                                 <tr style="background:#fafafa; color:#374151; text-align:left;">
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">File Uploaded</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Timestamp</th>
-                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Total Record Uploaded</th>
+                                    <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Total Record
+                                        Uploaded</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Passed</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Failed</th>
                                     <th style="padding:12px 14px; border-bottom:1px solid #e5e7eb;">Result</th>
@@ -1611,6 +2142,11 @@
     </main>
 
     <!-- =====================================================
+         Holiday Management Drawer
+         ===================================================== -->
+    <!-- Inline Holiday Drawer form moved to c:\Users\Rohit Redekar\OneDrive\Desktop\MMFSL-Entity-Mapping-UI-V2-main\index.html #holiday-form-container -->
+
+    <!-- =====================================================
          Success Modal
          ===================================================== -->
     <div id="success-modal" class="modal-overlay" style="display:none;">
@@ -1669,6 +2205,22 @@
 
     <script src="data.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Small client-side filter for the Applicable Geography checkbox list
+        document.addEventListener('DOMContentLoaded', () => {
+            const search = document.getElementById('holiday-geo-search');
+            const list = document.getElementById('custom-geo-checkbox-list');
+            if (!search || !list) return;
+            search.addEventListener('input', () => {
+                const q = search.value.trim().toLowerCase();
+                const items = list.querySelectorAll('.geo-checkbox-item:not(.select-all-row)');
+                items.forEach(item => {
+                    const txt = (item.textContent || '').trim().toLowerCase();
+                    item.style.display = q === '' || txt.includes(q) ? '' : 'none';
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
