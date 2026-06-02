@@ -53,109 +53,134 @@
                     </button>
                     <!-- Vertical dropdown panel -->
                     <div class="admin-dropdown-panel" id="admin-dropdown-panel">
-                        <!-- Touchpoints section -->
-                        <div class="admin-section-label">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                                <path d="M4.93 4.93a10 10 0 0 0 0 14.14"></path>
-                            </svg>
-                            Touchpoints
+                        <div class="admin-section">
+                            <button class="admin-section-toggle" type="button" data-target="admin-touchpoints-group" aria-expanded="false">
+                                <span class="admin-section-title">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                        <path d="M4.93 4.93a10 10 0 0 0 0 14.14"></path>
+                                    </svg>
+                                    Touchpoints
+                                </span>
+                                <svg class="chevron-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="admin-section-group" id="admin-touchpoints-group">
+                                <a href="#" id="nav-create-entity" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="12" y1="18" x2="12" y2="12"></line>
+                                        <line x1="9" y1="15" x2="15" y2="15"></line>
+                                    </svg>
+                                    Create Master Assessment Entity Type
+                                </a>
+                                <a href="#" id="nav-list-entity" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        <line x1="8" y1="16" x2="16" y2="16"></line>
+                                        <line x1="8" y1="8" x2="16" y2="8"></line>
+                                    </svg>
+                                    List Master Assessment Entity Type
+                                </a>
+                                <a href="#" id="nav-entity-mapping" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="8.5" cy="7" r="4"></circle>
+                                        <polyline points="17 11 19 13 23 9"></polyline>
+                                    </svg>
+                                    Entity User Mapping
+                                </a>
+                                <a href="#" id="nav-entity-upload" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    Entity User Mapping Upload
+                                </a>
+                                <a href="#" id="nav-entity-master-upload" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    Entity Upload Page
+                                </a>
+                            </div>
                         </div>
-                        <a href="#" id="nav-create-entity" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="12" y1="18" x2="12" y2="12"></line>
-                                <line x1="9" y1="15" x2="15" y2="15"></line>
-                            </svg>
-                            Create Master Assessment Entity Type
-                        </a>
-                        <a href="#" id="nav-list-entity" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="8" y1="12" x2="16" y2="12"></line>
-                                <line x1="8" y1="16" x2="16" y2="16"></line>
-                                <line x1="8" y1="8" x2="16" y2="8"></line>
-                            </svg>
-                            List Master Assessment Entity Type
-                        </a>
-                        <a href="#" id="nav-entity-mapping" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="8.5" cy="7" r="4"></circle>
-                                <polyline points="17 11 19 13 23 9"></polyline>
-                            </svg>
-                            Entity User Mapping
-                        </a>
-                        <a href="#" id="nav-entity-upload" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="17 8 12 3 7 8"></polyline>
-                                <line x1="12" y1="3" x2="12" y2="15"></line>
-                            </svg>
-                            Entity User Mapping Upload
-                        </a>
-                        <a href="#" id="nav-entity-master-upload" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="17 8 12 3 7 8"></polyline>
-                                <line x1="12" y1="3" x2="12" y2="15"></line>
-                            </svg>
-                            Entity Upload Page
-                        </a>
-                        <div class="admin-section-label">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="8.5" cy="7" r="4"></circle>
-                                <path d="M17 11h4"></path>
-                                <path d="M19 9v4"></path>
-                            </svg>
-                            Holiday Management
+                        <div class="admin-section">
+                            <button class="admin-section-toggle" type="button" data-target="admin-holiday-group" aria-expanded="false">
+                                <span class="admin-section-title">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="8.5" cy="7" r="4"></circle>
+                                        <path d="M17 11h4"></path>
+                                        <path d="M19 9v4"></path>
+                                    </svg>
+                                    Holiday Management
+                                </span>
+                                <svg class="chevron-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="admin-section-group" id="admin-holiday-group">
+                                <a href="#" id="nav-holiday-calendar" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="17" rx="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    Holiday Calendar
+                                </a>
+                                <a href="#" id="nav-holiday-list" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 6h16"></path>
+                                        <path d="M4 12h16"></path>
+                                        <path d="M4 18h16"></path>
+                                    </svg>
+                                    Holiday List
+                                </a>
+                                <a href="#" id="nav-holiday-upload" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    Upload Holidays
+                                </a>
+                            </div>
                         </div>
-                        <a href="#" id="nav-holiday-calendar" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="17" rx="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                            Holiday Calendar
-                        </a>
-                        <a href="#" id="nav-holiday-list" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 6h16"></path>
-                                <path d="M4 12h16"></path>
-                                <path d="M4 18h16"></path>
-                            </svg>
-                            Holiday List
-                        </a>
-                        <a href="#" id="nav-holiday-upload" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="17 8 12 3 7 8"></polyline>
-                                <line x1="12" y1="3" x2="12" y2="15"></line>
-                            </svg>
-                            Upload Holidays
-                        </a>
-
-                        <div class="admin-section-label">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="8.5" cy="7" r="4"></circle>
-                                <path d="M17 11h4"></path>
-                                <path d="M19 9v4"></path>
-                            </svg>
-                            User Management
+                        <div class="admin-section">
+                            <button class="admin-section-toggle" type="button" data-target="admin-user-group" aria-expanded="false">
+                                <span class="admin-section-title">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="8.5" cy="7" r="4"></circle>
+                                        <path d="M17 11h4"></path>
+                                        <path d="M19 9v4"></path>
+                                    </svg>
+                                    User Management
+                                </span>
+                                <svg class="chevron-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="admin-section-group" id="admin-user-group">
+                                <a href="#" id="nav-upload-users" class="admin-sub-link">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    Upload User Page
+                                </a>
+                            </div>
                         </div>
-                        <a href="#" id="nav-upload-users" class="admin-sub-link">
-                            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="17 8 12 3 7 8"></polyline>
-                                <line x1="12" y1="3" x2="12" y2="15"></line>
-                            </svg>
-                            Upload User Page
-                        </a>
                     </div>
                 </div>
 
@@ -1038,14 +1063,14 @@
                                 <td><span style="font-weight:700; color:#4b5563;">7</span> Attributes</td>
                                 <td style="color:#6b7280; font-size:12px;">28/04/2026</td>
                                 <td style="text-align:right; white-space:nowrap;">
-                                    <button class="cet-icon-btn view" onclick="showViewEntity('Retail Branch', 0)"
+                                    <!-- <button class="cet-icon-btn view" onclick="showViewEntity('Retail Branch', 0)"
                                         title="View Details">
                                         <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
                                             stroke="currentColor" stroke-width="2">
                                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                                             <circle cx="12" cy="12" r="3" />
                                         </svg>
-                                    </button>
+                                    </button> -->
                                     <button class="cet-icon-btn update" onclick="showUpdateEntity('Retail Branch', 0)"
                                         title="Update Configuration">
                                         <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
@@ -1274,8 +1299,8 @@
                         <select id="holiday-month-filter" class="cet-input" style="width:100%;"></select>
                     </div>
                     <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:flex-end;">
-                        <button class="action-btn" id="holiday-refresh-btn">Refresh</button>
-                        <button class="action-btn" id="holiday-export-calendar-btn">Export</button>
+                        <!-- <button class="action-btn" id="holiday-refresh-btn">Refresh</button>
+                        <button class="action-btn" id="holiday-export-calendar-btn">Export</button> -->
                     </div>
                 </div>
                 <div class="holiday-calendar-body" style="margin-top: 24px;">
@@ -1404,18 +1429,18 @@
                         <label class="field-label">Holiday Type</label>
                         <select id="holiday-type-filter" class="cet-input" style="width:100%;">
                             <option value="">All</option>
+                            <option value="Weekend Holiday">Weekend Holiday</option>
                             <option value="Configured Holiday">Configured Holiday</option>
-                            <option value="Special Closure">Special Closure</option>
-                            <option value="Working Weekend">Configured Working Weekend</option>
+                            <option value="Override Holiday">Override Holiday</option>
                         </select>
                     </div>
-                    <div>
+                    <!-- <div>
                         <label class="field-label">Status</label>
                         <select id="holiday-status-filter" class="cet-input" style="width:100%;">
                             <option value="All">All</option>
                             <option value="Active">Active</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div>
                         <label class="field-label">Search</label>
                         <input type="text" id="holiday-search-filter" class="cet-input" placeholder="Search holidays..."
@@ -1437,11 +1462,11 @@
                                 <th>Entity Type</th>
                                 <th>Geography Level</th>
                                 <th>Geography</th>
-                                <th>Working Status</th>
+                                <!-- <th>Working Status</th> -->
                                 <th>Remarks</th>
                                 <th>Created By</th>
                                 <th>Created Date</th>
-                                <th>Status</th>
+                                <!-- <th>Status</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -1516,6 +1541,24 @@
                         </div>
                     </div>
                     <div class="cet-card" style="padding:24px;">
+                        <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Upload guidance
+                        </h2>
+                        <div style="display:grid; gap:14px; color:#4b5563; font-size:14px; line-height:1.6;">
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Download the template to ensure all required columns are present in your Excel file.
+                            </div>
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Use the exact holiday types: <strong>Weekend Holiday</strong>, <strong>Configured Holiday</strong>, or <strong>Holiday Overridden</strong>.
+                            </div>
+                            <div
+                                style="padding:14px; border-left:4px solid #e41837; background:#fff5f6; border-radius:8px;">
+                                Dates must be in YYYY-MM-DD format. Multiple geographies should be comma-separated.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cet-card" style="padding:24px;">
                         <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Validation Summary
                         </h2>
                         <div id="holiday-upload-summary" style="display:grid; gap:12px; font-size:14px; color:#374151;">
@@ -1534,14 +1577,14 @@
                 <div class="cet-card" style="padding:24px; margin-top:24px;">
                     <h2 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px;">Expected Template
                         Columns</h2>
-                    <div style="display:grid; gap:10px; font-size:14px; color:#374151;">
-                        <div>Holiday Name</div>
-                        <div>Holiday Date</div>
-                        <div>Holiday Type</div>
-                        <div>Entity Type</div>
-                        <div>Geography Level</div>
-                        <div>Geography</div>
-                        <div>Remarks</div>
+                    <div style="display:grid; gap:10px; font-size:14px; color:#374151; line-height:1.6;">
+                        <div><strong>Holiday Name</strong> - Name of the holiday</div>
+                        <div><strong>Holiday Date</strong> - Date in YYYY-MM-DD format (e.g., 2026-12-25)</div>
+                        <div><strong>Holiday Type</strong> - Must be one of: Weekend Holiday, Configured Holiday, Holiday Overridden</div>
+                        <div><strong>Entity Type</strong> - Retail Branch, ATM, etc.</div>
+                        <div><strong>Geography Level</strong> - Region, State, Circle, Cluster, etc.</div>
+                        <div><strong>Geography</strong> - Applicable geography names (comma-separated if multiple)</div>
+                        <div><strong>Remarks</strong> - Optional notes or comments about the holiday</div>
                     </div>
                 </div>
             </div>
@@ -2147,6 +2190,204 @@
     <!-- Inline Holiday Drawer form moved to c:\Users\Rohit Redekar\OneDrive\Desktop\MMFSL-Entity-Mapping-UI-V2-main\index.html #holiday-form-container -->
 
     <!-- =====================================================
+         Holiday List — View / Update Modal (global overlay)
+         ===================================================== -->
+    <div id="holiday-detail-modal" class="modal-overlay" style="display:none; z-index:12000; background:rgba(15,23,42,0.55); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+        <div class="holiday-detail-modal-card" id="holiday-detail-modal-card" style="
+            background:#fff;
+            border-radius:20px;
+            width:600px;
+            max-width:95vw;
+            max-height:90vh;
+            overflow-y:auto;
+            box-shadow:0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.06);
+            animation: hdmSlideIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            position:relative;
+        ">
+            <!-- Header stripe -->
+            <div id="hdm-header" style="background:linear-gradient(135deg,#e41837 0%,#c0112a 100%); border-radius:20px 20px 0 0; padding:24px 28px 20px; position:relative;">
+                <!-- Badge -->
+                <div id="hdm-mode-badge" style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.18); border-radius:999px; padding:4px 12px; font-size:11px; font-weight:700; color:#fff; letter-spacing:0.06em; margin-bottom:12px; text-transform:uppercase;"></div>
+                <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+                    <div>
+                        <h2 id="hdm-title" style="font-family:'Outfit',sans-serif; font-size:22px; font-weight:800; color:#fff; margin:0 0 4px;"></h2>
+                        <p id="hdm-subtitle" style="font-size:13px; color:rgba(255,255,255,0.8); margin:0;"></p>
+                    </div>
+                    <button id="hdm-close-btn" onclick="closeHolidayDetailModal()" style="
+                        width:34px; height:34px; border-radius:50%; border:none;
+                        background:rgba(255,255,255,0.2); color:#fff; font-size:20px; line-height:1;
+                        cursor:pointer; display:flex; align-items:center; justify-content:center;
+                        flex-shrink:0; transition:background 0.2s;
+                    " onmouseover="this.style.background='rgba(255,255,255,0.35)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">×</button>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div style="padding:28px;">
+
+                <!-- Field grid -->
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px 24px;">
+
+                    <!-- Holiday Name -->
+                    <div style="grid-column:1/-1;">
+                        <label class="hdm-label">Holiday Name <span id="hdm-req-name" style="color:#e41837;">*</span></label>
+                        <input id="hdm-name" type="text" class="cet-input" placeholder="Enter holiday name" style="width:100%;">
+                        <div id="hdm-name-view" class="hdm-view-value"></div>
+                    </div>
+
+                    <!-- Holiday Date -->
+                    <div>
+                        <label class="hdm-label">Holiday Date</label>
+                        <div class="hdm-view-value" id="hdm-date-view" style="display:block;"></div>
+                    </div>
+
+                    <!-- Day -->
+                    <div>
+                        <label class="hdm-label">Day</label>
+                        <div class="hdm-view-value" id="hdm-day-view" style="display:block;"></div>
+                    </div>
+
+                    <!-- Holiday Type -->
+                    <div>
+                        <label class="hdm-label">Holiday Type</label>
+                        <div class="hdm-view-value" id="hdm-type-view" style="display:block;"></div>
+                    </div>
+
+                    <!-- Entity Type -->
+                    <div>
+                        <label class="hdm-label">Entity Type</label>
+                        <select id="hdm-entity-type" class="cet-input" style="width:100%;">
+                            <option value="Retail Branch">Retail Branch</option>
+                            <option value="ATM">ATM</option>
+                        </select>
+                        <div class="hdm-view-value" id="hdm-entity-type-view"></div>
+                    </div>
+
+                    <!-- Geography Level -->
+                    <div>
+                        <label class="hdm-label">Geography Level <span id="hdm-req-geo" style="color:#e41837;">*</span></label>
+                        <select id="hdm-geo-level" class="cet-input" style="width:100%;" onchange="populateHdmGeographies()">
+                            <option value="Region">Region</option>
+                            <option value="Circle">Circle</option>
+                            <option value="Cluster">Cluster</option>
+                            <option value="Branch">Branch</option>
+                        </select>
+                        <div class="hdm-view-value" id="hdm-geo-level-view"></div>
+                    </div>
+
+                    <!-- Geography -->
+                    <div style="grid-column:1/-1;">
+                        <label class="hdm-label">Applicable Geography <span id="hdm-req-geovals" style="color:#e41837;">*</span></label>
+                        <!-- Edit mode: checkbox list -->
+                        <div id="hdm-geo-edit-container" style="border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; background:#fafafa;">
+                            <div style="padding:8px 12px; border-bottom:1px solid #e5e7eb; background:#fff;">
+                                <input id="hdm-geo-search" type="text" class="cet-input" placeholder="Search geography..." style="width:100%; border:1px solid #e5e7eb; padding:6px 10px; font-size:13px; border-radius:6px;" oninput="filterHdmGeoList(this.value)">
+                            </div>
+                            <div id="hdm-geo-checkbox-list" style="max-height:160px; overflow-y:auto; padding:8px 12px; display:flex; flex-direction:column; gap:6px;"></div>
+                        </div>
+                        <!-- View mode: pill tags -->
+                        <div id="hdm-geo-view" class="hdm-view-value" style="display:flex; flex-wrap:wrap; gap:6px; min-height:30px;"></div>
+                    </div>
+
+                    <!-- Remarks -->
+                    <div style="grid-column:1/-1;">
+                        <label class="hdm-label">Remarks</label>
+                        <textarea id="hdm-remarks" class="cet-input" rows="3" placeholder="Optional notes" style="width:100%; resize:vertical;"></textarea>
+                        <div class="hdm-view-value" id="hdm-remarks-view"></div>
+                    </div>
+
+                    <!-- Meta row (view only) -->
+                    <div>
+                        <label class="hdm-label">Created By</label>
+                        <div class="hdm-view-value" id="hdm-created-by" style="display:block;"></div>
+                    </div>
+                    <div>
+                        <label class="hdm-label">Created Date</label>
+                        <div class="hdm-view-value" id="hdm-created-date" style="display:block;"></div>
+                    </div>
+
+                </div>
+
+                <!-- Action row -->
+                <div id="hdm-actions" style="display:flex; gap:12px; justify-content:flex-end; margin-top:28px; padding-top:20px; border-top:1px solid #f1f5f9;">
+                    <button class="action-btn" onclick="closeHolidayDetailModal()" style="padding:10px 24px;">Close</button>
+                    <button id="hdm-switch-to-edit-btn" class="cet-create-btn" style="background:#e41837; padding:10px 24px;" onclick="switchHolidayDetailToEdit()">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:6px; vertical-align:middle;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                        Switch to Edit
+                    </button>
+                    <button id="hdm-save-btn" class="cet-create-btn" style="background:#e41837; padding:10px 28px;" onclick="saveHolidayFromDetailModal()">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:6px; vertical-align:middle;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                        Update Holiday
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    @keyframes hdmSlideIn {
+        from { opacity:0; transform:translateY(-24px) scale(0.97); }
+        to   { opacity:1; transform:translateY(0) scale(1); }
+    }
+    .hdm-label {
+        display:block;
+        font-size:12px;
+        font-weight:700;
+        color:#6b7280;
+        text-transform:uppercase;
+        letter-spacing:0.06em;
+        margin-bottom:6px;
+    }
+    .hdm-view-value {
+        font-size:14px;
+        font-weight:600;
+        color:#111;
+        padding:8px 0;
+        border-bottom:1px solid #f1f5f9;
+        min-height:36px;
+        line-height:1.5;
+    }
+    .hdm-geo-pill {
+        display:inline-flex;
+        align-items:center;
+        background:#fff5f6;
+        border:1px solid #fecdd3;
+        color:#c0112a;
+        border-radius:999px;
+        padding:4px 12px;
+        font-size:12px;
+        font-weight:600;
+    }
+    .hdm-type-badge {
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        background:#f0fdf4;
+        border:1px solid #bbf7d0;
+        color:#15803d;
+        border-radius:8px;
+        padding:6px 12px;
+        font-size:13px;
+        font-weight:700;
+    }
+    .hdm-type-badge.weekend { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
+    .hdm-type-badge.override { background:#fefce8; border-color:#fde68a; color:#92400e; }
+    .hdm-geo-checkbox-item {
+        display:flex;
+        align-items:center;
+        gap:8px;
+        font-size:13px;
+        color:#374151;
+        cursor:pointer;
+        padding:3px 2px;
+        border-radius:4px;
+        transition:background 0.15s;
+    }
+    .hdm-geo-checkbox-item:hover { background:#f9fafb; }
+    .hdm-geo-checkbox-item input[type="checkbox"] { accent-color:#e41837; width:15px; height:15px; cursor:pointer; }
+    </style>
+
+    <!-- =====================================================
          Success Modal
          ===================================================== -->
     <div id="success-modal" class="modal-overlay" style="display:none;">
@@ -2192,8 +2433,8 @@
             <h3 id="confirm-modal-title"
                 style="font-size: 22px; font-weight: 800; color: #111; margin-bottom: 12px; font-family: 'Outfit', sans-serif;">
                 Confirm Action</h3>
-            <p id="confirm-modal-msg" style="margin-bottom: 32px; color: #4b5563; line-height: 1.6; font-size: 15px;">
-                Are you sure you want to proceed?</p>
+            <div id="confirm-modal-msg" style="margin-bottom: 32px; color: #4b5563; line-height: 1.6; font-size: 15px; text-align:left; max-height: 320px; overflow:auto; word-break:break-word;">
+                Are you sure you want to proceed?</div>
             <div style="display: flex; gap: 16px; justify-content: center;">
                 <button class="action-btn" id="confirm-modal-cancel"
                     style="flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; border: 1px solid #e5e7eb; background: white; cursor: pointer;">Cancel</button>
