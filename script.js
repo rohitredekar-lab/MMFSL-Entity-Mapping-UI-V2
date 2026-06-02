@@ -3810,7 +3810,7 @@ window.renderAttributes = renderAttributes;
 // =========================================================
 // CUSTOM MODAL / POPUP SYSTEM
 // =========================================================
-function showCustomModal({ title, message, type = 'info', confirmText = 'OK', cancelText = 'Cancel' }) {
+function showCustomModal({ title, message, type = 'info', confirmText = 'OK', cancelText = 'Cancel', isHtml = false, onOpen = null }) {
     return new Promise((resolve) => {
         const modal = document.getElementById('custom-confirm-modal');
         const titleEl = document.getElementById('confirm-modal-title');
@@ -3822,7 +3822,11 @@ function showCustomModal({ title, message, type = 'info', confirmText = 'OK', ca
         if (!modal) { resolve(false); return; }
 
         titleEl.textContent = title;
-        msgEl.textContent = message;
+        if (isHtml) {
+            msgEl.innerHTML = message;
+        } else {
+            msgEl.textContent = message;
+        }
         confirmBtn.textContent = confirmText;
         cancelBtn.style.display = type === 'confirm' ? 'block' : 'none';
 
@@ -3840,6 +3844,9 @@ function showCustomModal({ title, message, type = 'info', confirmText = 'OK', ca
         }
 
         modal.style.display = 'flex';
+        if (typeof onOpen === 'function') {
+            onOpen();
+        }
 
         const handleConfirm = () => {
             modal.style.display = 'none';
@@ -4451,6 +4458,23 @@ function initAdminDropdown() {
             panel.classList.remove('open');
             chev && chev.classList.remove('rotated');
         }
+    });
+
+    // Allow nested section toggles within the admin panel
+    const sectionToggles = panel.querySelectorAll('.admin-section-toggle');
+    sectionToggles.forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const targetId = this.dataset.target;
+            const targetGroup = document.getElementById(targetId);
+            if (!targetGroup) return;
+            const isOpen = targetGroup.classList.toggle('open');
+            this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            const chevron = this.querySelector('.chevron-xs');
+            if (chevron) {
+                chevron.classList.toggle('rotated', isOpen);
+            }
+        });
     });
 
     // Close on Escape
@@ -5103,9 +5127,25 @@ function getHolidayStatusForDate(date) {
     return { cardClass: 'working-day', tag: '', indicator: '', isDefaultWeekend: false, isHoliday: false };
 }
 
-function openHolidayDrawer(date, status) {
+function openHolidayDrawer(date, status, options = {}) {
     const drawer = document.getElementById('holiday-drawer');
+    const drawerWrapper = document.getElementById('holiday-form-container');
     if (!drawer) return;
+    const overlay = options.overlay === true;
+    if (overlay) {
+        drawer.classList.add('overlay-mode');
+        if (drawerWrapper) {
+            drawerWrapper.classList.add('overlay-open');
+            drawerWrapper.style.display = 'block';
+        }
+    } else {
+        drawer.classList.remove('overlay-mode');
+        if (drawerWrapper) {
+            drawerWrapper.classList.remove('overlay-open');
+            drawerWrapper.style.display = '';
+        }
+    }
+
     holidayState.drawer.visible = true;
     holidayState.drawer.date = formatDate(date);
     const title = document.getElementById('holiday-drawer-title');
@@ -5116,15 +5156,56 @@ function openHolidayDrawer(date, status) {
     const nameInput = document.getElementById('holiday-name-input');
     const remarksInput = document.getElementById('holiday-remarks');
     const existingCard = document.getElementById('holiday-existing-holiday-card');
+    const geoSearch = document.getElementById('holiday-geo-search');
 
-    if (drawerEntityType) drawerEntityType.value = holidayState.entityType;
+    const setDrawerEditable = (enabled) => {
+        if (nameInput) nameInput.disabled = !enabled;
+        if (drawerEntityType) drawerEntityType.disabled = !enabled;
+        if (drawerLevel) drawerLevel.disabled = !enabled;
+        if (remarksInput) remarksInput.disabled = !enabled;
+        if (geoSearch) geoSearch.disabled = !enabled;
+        const checkboxList = document.querySelectorAll('#custom-geo-checkbox-list input[type="checkbox"]');
+        checkboxList.forEach(cb => cb.disabled = !enabled);
+    };
+
+    if (drawerEntityType) drawerEntityType.value = status.record?.entityType || holidayState.entityType;
     if (drawerLevel) drawerLevel.value = status.record?.geographyLevel || holidayState.drawer.selectedLevel || 'Region';
     populateDrawerGeographies();
     if (status.record) {
+        syncGeoCheckboxes(status.record.geography.split(',').map(v => v.trim()).filter(Boolean));
+    }
+
+    const isView = status.mode === 'view';
+    const isEdit = status.mode === 'edit';
+
+    if (isView && status.record) {
+        if (title) title.textContent = 'Holiday Details';
+        holidayState.drawer.mode = 'view';
+        if (saveBtn) saveBtn.style.display = 'none';
+        if (existingCard) {
+            existingCard.style.display = 'none';
+            existingCard.innerHTML = '';
+        }
+    } else if (isEdit && status.record) {
+        if (title) title.textContent = 'Edit Holiday';
+        holidayState.drawer.mode = 'edit';
+        holidayState.drawer.defaultStatus = status.record.workingStatus !== 'Working Day' ? 'Holiday' : 'Working Day';
+        if (saveBtn) {
+            saveBtn.textContent = 'Update Holiday';
+            saveBtn.style.display = '';
+        }
+        if (existingCard) {
+            existingCard.style.display = 'none';
+            existingCard.innerHTML = '';
+        }
+    } else if (status.record) {
         if (title) title.textContent = 'Create Holiday';
         holidayState.drawer.mode = 'create';
         holidayState.drawer.defaultStatus = status.record.workingStatus !== 'Working Day' ? 'Holiday' : 'Working Day';
-        if (saveBtn) saveBtn.textContent = 'Create Holiday';
+        if (saveBtn) {
+            saveBtn.textContent = 'Create Holiday';
+            saveBtn.style.display = '';
+        }
         if (existingCard) {
             existingCard.style.display = 'block';
             existingCard.innerHTML = `
@@ -5151,11 +5232,14 @@ function openHolidayDrawer(date, status) {
                 </div>
             `;
         }
-    } else if (status.isDefaultWeekend && !status.record) {
+    } else if (status.isDefaultWeekend && !status.record && status.isHoliday) {
         if (title) title.textContent = 'Override Holiday Configuration';
         holidayState.drawer.mode = 'override';
         holidayState.drawer.defaultStatus = status.isHoliday ? 'Holiday' : 'Working Day';
-        if (saveBtn) saveBtn.textContent = 'Save Override';
+        if (saveBtn) {
+            saveBtn.textContent = 'Save Override';
+            saveBtn.style.display = '';
+        }
         if (existingCard) {
             existingCard.style.display = 'none';
             existingCard.innerHTML = '';
@@ -5164,29 +5248,37 @@ function openHolidayDrawer(date, status) {
         if (title) title.textContent = 'Create Holiday';
         holidayState.drawer.mode = 'create';
         holidayState.drawer.defaultStatus = 'Holiday';
-        if (saveBtn) saveBtn.textContent = 'Create Holiday';
+        if (saveBtn) {
+            saveBtn.textContent = 'Create Holiday';
+            saveBtn.style.display = '';
+        }
         if (existingCard) {
             existingCard.style.display = 'none';
             existingCard.innerHTML = '';
         }
     }
+
     if (dateLabel) dateLabel.textContent = `${status.isHoliday ? 'Holiday' : 'Working Day'} · ${holidayState.drawer.date}`;
-    if (nameInput) nameInput.value = status.record ? '' : status.record?.name || '';
-    // Hide Holiday Name field when overriding weekend default
+    if (nameInput) nameInput.value = status.record?.name || '';
+    if (remarksInput) remarksInput.value = status.record?.remarks || '';
+    if (drawerEntityType && status.record) drawerEntityType.value = status.record.entityType || holidayState.entityType;
+
     if (holidayState.drawer.mode === 'override') {
         if (nameInput) nameInput.closest('.form-group').style.display = 'none';
     } else {
         if (nameInput) nameInput.closest('.form-group').style.display = '';
     }
-    if (remarksInput) remarksInput.value = status.record?.remarks || '';
-    
-    // Toggle split-view style to split calendar and form container
-    const body = document.querySelector('.holiday-calendar-body');
-    if (body) body.classList.add('split-view');
-    drawer.style.display = 'block';
 
-    const calendarPanel = document.querySelector('.holiday-calendar-panel');
-    if (calendarPanel) calendarPanel.classList.add('drawer-open');
+    setDrawerEditable(!isView);
+
+    if (!overlay) {
+        const body = document.querySelector('.holiday-calendar-body');
+        if (body) body.classList.add('split-view');
+        const calendarPanel = document.querySelector('.holiday-calendar-panel');
+        if (calendarPanel) calendarPanel.classList.add('drawer-open');
+    }
+
+    drawer.style.display = 'block';
     const previousSelected = document.querySelector('.holiday-day-card.selected');
     if (previousSelected) previousSelected.classList.remove('selected');
     const selectedCard = document.querySelector(`.holiday-day-card[data-date="${holidayState.drawer.date}"]`);
@@ -5197,6 +5289,12 @@ function closeHolidayDrawer() {
     const drawer = document.getElementById('holiday-drawer');
     if (!drawer) return;
     drawer.style.display = 'none';
+    drawer.classList.remove('overlay-mode');
+    const drawerWrapper = document.getElementById('holiday-form-container');
+    if (drawerWrapper) {
+        drawerWrapper.classList.remove('overlay-open');
+        drawerWrapper.style.display = '';
+    }
     holidayState.drawer.visible = false;
     holidayState.drawer.date = null;
 
@@ -5324,16 +5422,31 @@ function saveHolidayFromDrawer() {
     const selectedOptions = Array.from(document.getElementById('holiday-drawer-geo-values')?.selectedOptions || []).map(o => o.value);
     const remarks = document.getElementById('holiday-remarks')?.value || '';
     let name = nameInput?.value?.trim();
-    // If overriding weekend default, holiday name is optional — supply a sensible default
+    
+    if (holidayState.drawer.mode === 'view') {
+        closeHolidayDrawer();
+        return;
+    }
+
     if (!name) {
         if (holidayState.drawer.mode === 'override') {
             name = holidayState.drawer.defaultStatus === 'Holiday' ? 'Weekend Override' : 'Weekend Working Override';
         } else {
-            return alert('Please enter a holiday name.');
+            return showCustomModal({
+                title: 'Validation error',
+                message: 'Please enter a holiday name.',
+                type: 'info',
+                confirmText: 'Close'
+            });
         }
     }
     if (selectedOptions.length === 0) {
-        return alert('Please select at least one applicable geography.');
+        return showCustomModal({
+            title: 'Validation error',
+            message: 'Please select at least one applicable geography.',
+            type: 'info',
+            confirmText: 'Close'
+        });
     }
     const date = holidayState.drawer.date;
     const isHoliday = holidayState.drawer.defaultStatus === 'Holiday';
@@ -5341,6 +5454,31 @@ function saveHolidayFromDrawer() {
         ? 'Holiday Overridden'
         : (isHoliday ? 'Configured Holiday' : 'Configured Working Weekend');
     const workingStatus = isHoliday ? 'Holiday' : 'Working Day';
+
+    // For edit mode, find and update the existing record
+    if (holidayState.drawer.mode === 'edit') {
+        const editingRecord = holidayState.records.find(r => r.date === date);
+        if (editingRecord) {
+            editingRecord.name = name;
+            editingRecord.geographyLevel = level;
+            editingRecord.geography = selectedOptions.join(', ');
+            editingRecord.remarks = remarks;
+            editingRecord.workingStatus = workingStatus;
+            editingRecord.holidayType = holidayType;
+            closeHolidayDrawer();
+            renderHolidayCalendar();
+            renderHolidayList();
+            showCustomModal({
+                title: 'Holiday updated',
+                message: 'Holiday has been updated successfully.',
+                type: 'info',
+                confirmText: 'Close'
+            });
+            return;
+        }
+    }
+
+    // For create and override modes, create new record
     const record = {
         id: `hl-${Date.now()}`,
         name,
@@ -5365,38 +5503,270 @@ function saveHolidayFromDrawer() {
     closeHolidayDrawer();
     renderHolidayCalendar();
     renderHolidayList();
-    alert('Holiday saved successfully.');
+    
+    // Show different success message for override vs create
+    const isOverride = holidayState.drawer.mode === 'override';
+    showCustomModal({
+        title: isOverride ? 'Holiday Overridden' : 'Holiday saved',
+        message: isOverride ? 'Holiday overridden successfully.' : 'Holiday saved successfully.',
+        type: 'info',
+        confirmText: 'Close'
+    });
+}
+
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function buildSectionRow(title, description) {
+    return `
+        <tr class="holiday-list-section-row">
+            <td colspan="12">
+                <div class="holiday-list-section-title">
+                    <strong>${escapeHtml(title)}</strong>
+                    ${description ? `<span>${escapeHtml(description)}</span>` : ''}
+                </div>
+            </td>
+        </tr>`;
+}
+
+function buildEmptyRow(message) {
+    return `
+        <tr class="holiday-list-empty-row">
+            <td colspan="12">${escapeHtml(message)}</td>
+        </tr>`;
+}
+
+function formatGeographyCell(record) {
+    const geography = String(record.geography || 'All Geographies');
+    const maxLength = 30;
+    const full = escapeHtml(geography);
+    const preview = geography.length <= maxLength ? full : escapeHtml(geography.slice(0, maxLength - 3) + '...');
+    return `
+        <div class="holiday-geo-cell">
+            <span class="holiday-geo-text" title="${full}">${preview}</span>
+            <button type="button" class="action-btn holiday-geo-view-more" title="View more geography" onclick="showGeographyPopup('${record.id}')">View More</button>
+        </div>`;
+}
+
+function buildHolidayRecordRow(record) {
+    const geographyCell = formatGeographyCell(record);
+    const actions = record.isWeekend ? `
+        <button type="button" class="cet-icon-btn view" title="Override weekend holiday" onclick="overrideWeekendHolidayFromList('${record.date}')">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14"></path>
+                <path d="M5 12h14"></path>
+            </svg>
+        </button>` : `
+        <button type="button" class="cet-icon-btn update" title="Edit holiday" onclick="editHoliday('${record.id}')">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+            </svg>
+        </button>
+        <button type="button" class="cet-icon-btn delete" title="Delete holiday" onclick="deleteHoliday('${record.id}')">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6l-2 14H7L5 6"></path>
+                <path d="M10 11v6"></path>
+                <path d="M14 11v6"></path>
+                <path d="M9 6V4h6v2"></path>
+            </svg>
+        </button>`;
+
+    return `
+        <tr>
+            <td>${escapeHtml(record.name)}</td>
+            <td>${escapeHtml(record.date)}</td>
+            <td>${escapeHtml(record.day)}</td>
+            <td>${escapeHtml(record.holidayType)}</td>
+            <td>${escapeHtml(record.entityType)}</td>
+            <td>${escapeHtml(record.geographyLevel)}</td>
+            <td>${geographyCell}</td>
+            <td>${escapeHtml(record.remarks)}</td>
+            <td>${escapeHtml(record.createdBy)}</td>
+            <td>${escapeHtml(record.createdDate)}</td>
+            <td class="holiday-actions-cell">${actions}</td>
+        </tr>`;
+}
+
+function getWeekendHolidayRows() {
+    const weekendRows = [];
+    const year = holidayState.year;
+    const month = holidayState.month;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const weekday = date.getDay();
+        if (weekday !== 0 && weekday !== 6) continue;
+
+        const dateKey = formatDate(date);
+        const alreadyConfigured = holidayState.records.some(record => record.date === dateKey);
+        if (alreadyConfigured) continue;
+
+        weekendRows.push({
+            id: `${dateKey}-weekend`,
+            name: 'Weekend Holiday',
+            date: dateKey,
+            day: date.toLocaleDateString('en-US', { weekday: 'long' }),
+            holidayType: 'Weekend Holiday',
+            entityType: 'All Entities',
+            geographyLevel: 'All',
+            geography: 'All Geographies',
+            workingStatus: 'Holiday',
+            remarks: 'Default weekend holiday',
+            createdBy: 'System',
+            createdDate: '-',
+            isWeekend: true,
+        });
+    }
+    return weekendRows;
+}
+
+function openHolidayDrawerByDate(dateString) {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+        return showCustomModal({
+            title: 'Invalid Date',
+            message: 'Invalid date selected.',
+            type: 'info',
+            confirmText: 'Close'
+        });
+    }
+    openHolidayDrawer(date, getHolidayStatusForDate(date), { overlay: true });
+}
+
+function overrideWeekendHolidayFromList(dateString) {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+        return showCustomModal({
+            title: 'Invalid Date',
+            message: 'Invalid date selected.',
+            type: 'info',
+            confirmText: 'Close'
+        });
+    }
+
+    // Navigate to calendar page
+    const listPage = document.getElementById('holiday-list-page');
+    const calendarPage = document.getElementById('holiday-calendar-page');
+    if (listPage) listPage.style.display = 'none';
+    if (calendarPage) calendarPage.style.display = 'block';
+
+    // Update year/month to match the date
+    holidayState.year = date.getFullYear();
+    holidayState.month = date.getMonth();
+
+    // Open drawer in override mode
+    const status = getHolidayStatusForDate(date);
+    openHolidayDrawer(date, status, { overlay: false });
+
+    // Render calendar
+    renderHolidayCalendar();
+
+    // Highlight the date
+    const previousSelected = document.querySelector('.holiday-day-card.selected');
+    if (previousSelected) previousSelected.classList.remove('selected');
+    const selectedCard = document.querySelector(`.holiday-day-card[data-date="${dateString}"]`);
+    if (selectedCard) selectedCard.classList.add('selected');
+}
+
+function showGeographyPopup(recordId) {
+    const record = holidayState.records.find(r => r.id === recordId);
+    if (!record) return;
+
+    const geography = String(record.geography || 'All Geographies');
+    const items = geography.split(',').map(item => item.trim()).filter(Boolean);
+    const listHtml = items.length ? items.map(item => `<div class="holiday-geo-full-item">${escapeHtml(item)}</div>`).join('') : `<div class="holiday-geo-full-item">All Geographies</div>`;
+
+    const modalContent = `
+        <div class="holiday-geo-full-list">
+            <input id="geography-search-input" class="holiday-list-search" type="text" placeholder="Search geography..." />
+            <div id="geography-list-container">${listHtml}</div>
+        </div>`;
+
+    showCustomModal({
+        title: 'Geography details',
+        message: modalContent,
+        confirmText: 'Close',
+        type: 'info',
+        isHtml: true,
+        onOpen: () => {
+            const searchInput = document.getElementById('geography-search-input');
+            const listContainer = document.getElementById('geography-list-container');
+            if (!searchInput || !listContainer) return;
+
+            searchInput.addEventListener('input', () => {
+                const filter = searchInput.value.trim().toLowerCase();
+                Array.from(listContainer.children).forEach(item => {
+                    item.style.display = !filter || item.textContent.toLowerCase().includes(filter) ? 'block' : 'none';
+                });
+            });
+        }
+    });
 }
 
 function renderHolidayList() {
     const tbody = document.getElementById('holiday-list-body');
     if (!tbody) return;
-    const records = filterHolidayRecords();
-    const start = (holidayState.listPage - 1) * holidayState.pageSize;
-    const pageRecords = records.slice(start, start + holidayState.pageSize);
-    tbody.innerHTML = pageRecords.map(record => `
-        <tr>
-            <td>${record.name}</td>
-            <td>${record.date}</td>
-            <td>${record.day}</td>
-            <td>${record.holidayType}</td>
-            <td>${record.entityType}</td>
-            <td>${record.geographyLevel}</td>
-            <td>${record.geography}</td>
-            <td>${record.workingStatus}</td>
-            <td>${record.remarks}</td>
-            <td>${record.createdBy}</td>
-            <td>${record.createdDate}</td>
-            <td>${record.status}</td>
-            <td style="display:flex; gap:8px; flex-wrap:wrap;">
-                <button class="action-btn" style="padding:4px 8px;" onclick="viewHoliday('${record.id}')">View</button>
-                <button class="action-btn" style="padding:4px 8px;" onclick="editHoliday('${record.id}')">Edit</button>
-                <button class="action-btn" style="padding:4px 8px;" onclick="deleteHoliday('${record.id}')">Delete</button>
-            </td>
-        </tr>
-    `).join('') || '<tr><td colspan="13" style="padding:18px; color:#6b7280;">No holidays found.</td></tr>';
+
+    const hasActiveFilters = holidayState.filters.entityType || holidayState.filters.geographyLevel || holidayState.filters.geography || holidayState.filters.holidayType || holidayState.filters.search;
+    
+    if (!hasActiveFilters) {
+        tbody.innerHTML = buildEmptyRow('Select filters to display holidays.');
+        const pageIndicator = document.getElementById('holiday-list-page-indicator');
+        if (pageIndicator) pageIndicator.textContent = 'No filters selected';
+        return;
+    }
+
+    const filterType = holidayState.filters.holidayType;
+    const allRecords = filterHolidayRecords();
+    const weekendRecords = getWeekendHolidayRows();
+    
+    const rows = [];
+    let displayRecords = [];
+    let displayCount = 0;
+
+    if (!filterType) {
+        // If no specific type filter, show Weekend, then Configured, then Override
+        displayRecords = [...weekendRecords, ...allRecords];
+        displayCount = weekendRecords.length + allRecords.length;
+    } else if (filterType === 'Weekend Holiday') {
+        displayRecords = weekendRecords;
+        displayCount = weekendRecords.length;
+    } else if (filterType === 'Configured Holiday') {
+        // Show only Configured Holiday type (not Working Weekend overrides)
+        displayRecords = allRecords.filter(r => r.holidayType === 'Configured Holiday');
+        displayCount = displayRecords.length;
+    } else if (filterType === 'Override Holiday') {
+        // Show only Holiday Overridden type
+        displayRecords = allRecords.filter(r => r.holidayType === 'Holiday Overridden');
+        displayCount = displayRecords.length;
+    }
+
+    if (displayRecords.length > 0) {
+        rows.push(...displayRecords.map(buildHolidayRecordRow));
+    } else {
+        rows.push(buildEmptyRow('No holidays match the current filters.'));
+    }
+
+    tbody.innerHTML = rows.join('');
+
     const pageIndicator = document.getElementById('holiday-list-page-indicator');
-    if (pageIndicator) pageIndicator.textContent = `Page ${holidayState.listPage}`;
+    if (pageIndicator) {
+        pageIndicator.textContent = filterType ? `${filterType} (${displayCount} records)` : `Showing ${displayCount} records`;
+    }
+
+    const prevBtn = document.getElementById('holiday-prev-page-btn');
+    const nextBtn = document.getElementById('holiday-next-page-btn');
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = true;
 }
 
 function filterHolidayRecords() {
@@ -5404,7 +5774,12 @@ function filterHolidayRecords() {
         if (holidayState.filters.entityType && record.entityType !== holidayState.filters.entityType) return false;
         if (holidayState.filters.geographyLevel && record.geographyLevel !== holidayState.filters.geographyLevel) return false;
         if (holidayState.filters.geography && !record.geography.includes(holidayState.filters.geography)) return false;
-        if (holidayState.filters.holidayType && record.holidayType !== holidayState.filters.holidayType) return false;
+        if (holidayState.filters.holidayType) {
+            const desiredType = holidayState.filters.holidayType === 'Override Holiday'
+                ? 'Holiday Overridden'
+                : holidayState.filters.holidayType;
+            if (record.holidayType !== desiredType) return false;
+        }
         if (holidayState.filters.status !== 'All' && record.status !== holidayState.filters.status) return false;
         if (holidayState.filters.search) {
             const term = holidayState.filters.search.toLowerCase();
@@ -5424,63 +5799,67 @@ function resetHolidayListFilters() {
 }
 
 function viewHoliday(id) {
+    console.log('viewHoliday called with id:', id);
     const record = holidayState.records.find(r => r.id === id);
-    if (!record) return alert('Holiday record not found.');
-    alert(`Holiday: ${record.name}
-Date: ${record.date}
-Type: ${record.holidayType}
-Geography: ${record.geography}`);
+    if (!record) {
+        console.warn('Record not found for id:', id);
+        return showCustomModal({
+            title: 'Holiday not found',
+            message: 'Holiday record not found.',
+            type: 'info',
+            confirmText: 'Close'
+        });
+    }
+
+    const date = new Date(record.date);
+    if (isNaN(date.getTime())) return showCustomModal({
+        title: 'Invalid Date',
+        message: 'Cannot open holiday details for an invalid date.',
+        type: 'info',
+        confirmText: 'Close'
+    });
+
+    console.log('Opening drawer for view, record:', record);
+    openHolidayDrawer(date, { record, mode: 'view', isHoliday: record.workingStatus !== 'Working Day' }, { overlay: true });
 }
 
 function editHoliday(id) {
+    console.log('editHoliday called with id:', id);
     const record = holidayState.records.find(r => r.id === id);
-    if (!record) return alert('Holiday record not found.');
-    
-    // Switch to Calendar Page inline view
-    showPage('holiday-calendar-page');
-
-    // Update calendar filters to point to this holiday's month/year
-    const recDate = new Date(record.date);
-    if (!isNaN(recDate.getTime())) {
-        holidayState.year = recDate.getFullYear();
-        holidayState.month = recDate.getMonth();
-        const yearFilter = document.getElementById('holiday-year-filter');
-        const monthFilter = document.getElementById('holiday-month-filter');
-        if (yearFilter) yearFilter.value = holidayState.year;
-        if (monthFilter) monthFilter.value = holidayState.month;
+    if (!record) {
+        console.warn('Record not found for id:', id);
+        return showCustomModal({
+            title: 'Holiday not found',
+            message: 'Holiday record not found.',
+            type: 'info',
+            confirmText: 'Close'
+        });
     }
+
+    const date = new Date(record.date);
+    if (isNaN(date.getTime())) return showCustomModal({
+        title: 'Invalid Date',
+        message: 'Cannot edit holiday for an invalid date.',
+        type: 'info',
+        confirmText: 'Close'
+    });
+
+    // Navigate to calendar page
+    const listPage = document.getElementById('holiday-list-page');
+    const calendarPage = document.getElementById('holiday-calendar-page');
+    if (listPage) listPage.style.display = 'none';
+    if (calendarPage) calendarPage.style.display = 'block';
+
+    // Update year/month to match the record date
+    const recordDate = new Date(record.date);
+    holidayState.year = recordDate.getFullYear();
+    holidayState.month = recordDate.getMonth();
+
+    console.log('Opening drawer for edit, record:', record);
+    openHolidayDrawer(date, { record, mode: 'edit', isHoliday: record.workingStatus !== 'Working Day' }, { overlay: false });
+
+    // Render calendar with the updated year/month
     renderHolidayCalendar();
-
-    holidayState.drawer.date = record.date;
-    holidayState.drawer.visible = true;
-    holidayState.drawer.mode = 'edit';
-    
-    const drawer = document.getElementById('holiday-drawer');
-    if (drawer) drawer.style.display = 'block';
-
-    // Expand form column to split-view for editing
-    const body = document.querySelector('.holiday-calendar-body');
-    if (body) body.classList.add('split-view');
-
-    const title = document.getElementById('holiday-drawer-title');
-    if (title) title.textContent = 'Edit Holiday';
-    const dateField = document.getElementById('holiday-drawer-date');
-    if (dateField) dateField.textContent = record.date;
-    const nameInput = document.getElementById('holiday-name-input');
-    if (nameInput) nameInput.value = record.name;
-    if (nameInput) nameInput.closest('.form-group').style.display = '';
-    const entitySelect = document.getElementById('holiday-drawer-entity-type');
-    if (entitySelect) entitySelect.value = record.entityType;
-    const geoLevelSelect = document.getElementById('holiday-drawer-geo-level');
-    if (geoLevelSelect) geoLevelSelect.value = record.geographyLevel;
-    
-    populateDrawerGeographies();
-    
-    // Sync both hidden select and custom checkboxes for editing
-    syncGeoCheckboxes(record.geography.split(', ').map(v => v.trim()));
-    const remarksInput = document.getElementById('holiday-remarks');
-    if (remarksInput) remarksInput.value = record.remarks;
-    holidayState.drawer.defaultStatus = record.workingStatus !== 'Working Day' ? 'Holiday' : 'Working Day';
 
     // Ensure the calendar grid date card shows selected state
     const previousSelected = document.querySelector('.holiday-day-card.selected');
@@ -5489,8 +5868,23 @@ function editHoliday(id) {
     if (selectedCard) selectedCard.classList.add('selected');
 }
 
-function deleteHoliday(id) {
+async function deleteHoliday(id) {
     const record = holidayState.records.find(r => r.id === id);
+    if (!record) {
+        showCustomModal({ title: 'Error', message: 'Holiday record not found.', confirmText: 'Close' });
+        return;
+    }
+    
+    const confirmed = await showCustomModal({
+        title: 'Delete Holiday',
+        message: `Are you sure you want to delete "${record.name}" on ${record.date}? This action cannot be undone.`,
+        confirmText: 'Delete',
+        cancelText: 'Cancel',
+        type: 'confirm'
+    });
+    
+    if (!confirmed) return;
+    
     holidayState.records = holidayState.records.filter(r => r.id !== id);
     renderHolidayList();
     renderHolidayCalendar();
@@ -5500,6 +5894,8 @@ function deleteHoliday(id) {
             openHolidayDrawer(date, getHolidayStatusForDate(date));
         }
     }
+    
+    showCustomModal({ title: 'Success', message: `Holiday "${record.name}" has been deleted successfully.`, confirmText: 'Close' });
 }
 
 function formatDate(date) {
